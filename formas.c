@@ -79,7 +79,7 @@ void printtriFURO(int startrow,int startcol,int height,int width,int maxx)
  {
   for(int c=startcol+1;c<=x;c++)
   {
-   if(FURO = 0)
+   if(FURO == 0)
    {
    		POSI_FURO_INICIAL[FURO][0] = startrow;
    		POSI_FURO_INICIAL[FURO][1] = startcol;
@@ -124,7 +124,7 @@ void GERARSALAS(int quantas,int maxy,int maxx,int posiy,int posix,int *MEM_POSI)
 	    
 	    printret(RANDOM_Y, RANDOM_X,RANDOM_H,RANDOM_W,maxx);
 	    printretfuro(RANDOM_Y+1, RANDOM_X+1,RANDOM_H-2,RANDOM_W-2,maxx);
-	    if (apenas1=0)
+	    if (apenas1==0)
 	    {
 	    	MEM_POSI[0] = RANDOM_Y+1;
 	    	MEM_POSI[1] = RANDOM_X+1;
@@ -159,13 +159,13 @@ void GERAR_PORTAS(int * MEM_XY)
             {	
             	
             	mvinch((y-i),x);
-            	inch;
+            	inch();
             	yps[i] = inch();
             }
             for (int i = 6; i <= 11; i ++ )
             {
             	mvinch((y+i),x);
-            	inch;
+            	inch();
             	yps[i] = inch();
             }
             if(l1 == '*' && l2 == '#' && l3 == '*')
