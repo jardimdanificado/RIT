@@ -147,15 +147,18 @@ void Teclado()
 //-----------------------------------------------------------------------------------------
                 case '1':
                 {
-                    ITEM[0] == DROPAR_ITEM(posiy,posix,ITEM[0]);
+                  if(ITEM[0]!='0')
+                  {
+                    ITEM[0] = DROPAR_ITEM(posiy,posix,ITEM[0]);
                     if(ITEM[0] == '0')
                     {
                         ITEM_CONTADOR--;
                     }
-                    else
-                    {
+                  }
+                  else
+                  {
                     
-                    }
+                  }
                 }
 
 
