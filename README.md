@@ -4,6 +4,9 @@
 
 roguelike totalmente em portugues, "Contos Indianos, Roguelike".
 
+controles: C fecha porta, G pega objeto, S salva um bloco de texto com a leitura da tela.
+
+
 
 compile: 
 
