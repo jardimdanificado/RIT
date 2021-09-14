@@ -45,57 +45,9 @@ void printretfuro(int startrow,int startcol,int height,int width,int maxx)
   for(int c=startcol;c<=startcol+width;c++)
   {
    move(r,c);
-   printw("*");
+   printw("_");
   }
  }
-}
-
-void printtri(int startrow,int startcol,int height,int width,int maxx)
-{
- int x=startcol;
-
- for(int r=startrow;r<=startrow+height;r++)
- {
-  for(int c=startcol;c<=x;c++)
-  {
-   move(r,c);
-   printw(",");
-  }
- x++;
- startcol--;
- }
- 
-}
-
-int FURO=0;
-int POSI_FURO_INICIAL[6][2];
-int POSI_FURO_FINAL[6][2];
-void printtriFURO(int startrow,int startcol,int height,int width,int maxx)
-{
- int x=startcol;
- int local_x=0;
- int local_y=0;
- for(int r=startrow+1;r<=startrow+height;r++)
- {
-  for(int c=startcol+1;c<=x;c++)
-  {
-   if(FURO == 0)
-   {
-   		POSI_FURO_INICIAL[FURO][0] = startrow;
-   		POSI_FURO_INICIAL[FURO][1] = startcol;
-   }
-   else
-   {
-    POSI_FURO_FINAL[FURO][0] = r;
-    POSI_FURO_FINAL[FURO][1] = c;
-   }
-   move(r,c);
-   printw("*");
-  }
- x++;
- startcol--;
- }
- FURO=FURO+2;
 }
 
 
@@ -168,7 +120,7 @@ void GERAR_PORTAS(int * MEM_XY)
             	inch();
             	yps[i] = inch();
             }
-            if(l1 == '*' && l2 == '#' && l3 == '*')
+            if(l1 == '_' && l2 == '#' && l3 == '_')
             {
               //if(x%2 == 0)
              // {

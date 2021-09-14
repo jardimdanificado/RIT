@@ -18,7 +18,7 @@ int *MEM_XY;
 int *MEM_POSI;
 int *MEMORIAFODA;
 char leitura;
-char SOLO_SALVO = '*';
+char SOLO_SALVO = '_';
 int PORTAS[10][3];
 char ITEM[5];
 int ITEM_CONTADOR = 0;
@@ -226,7 +226,7 @@ int main()
             mvinch(y,x);
             inch();
             leitura = inch();
-            if(leitura == '*'&&perso == 0)
+            if(leitura == '_'&&perso == 0)
             {
             	posiy = y;
             	posix = x;

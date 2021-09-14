@@ -156,9 +156,9 @@ char PEGAR_ITEM(int yc, int xc,int tecla)
 		char ler;
 		ler = inch();
 		
-		if(ler != '*'&&ler != '#'&&ler !='?'&&ler!='0')
+		if(ler != '_'&&ler != '#'&&ler !='?'&&ler!='0')
 		{
-        		mvprintw(yc,xc,"*");
+        		mvprintw(yc,xc,"_");
         		return(ler);
 		}
 		else
