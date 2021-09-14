@@ -69,8 +69,8 @@ void GERARSALAS(int quantas,int maxy,int maxx,int posiy,int posix,int *MEM_POSI)
 	    
 	    while(RANDOM_H < 3||RANDOM_W < 3)
 	    {
-	       RANDOM_W = rand() % 7;
-	       RANDOM_H = rand() % 8;
+	       RANDOM_W = rand() % 16;
+	       RANDOM_H = rand() % 14;
 	    }
 	    var_x = RANDOM_X+ RANDOM_W;
 	    
@@ -166,7 +166,7 @@ void GERAR_ARMA(int *MEM_XY,int leitura)
             mvinch(y,x);
             inch();
             leitura = inch();
-            if(leitura == '*')
+            if(leitura == '_')
             {
 		cronometro++;
 		if(cronometro == roleta)

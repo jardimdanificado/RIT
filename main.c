@@ -38,7 +38,7 @@ void Teclado()
                 {
                 	mvinch(posiy,posix+1);
                 	leitura = inch();
-                    if( posix >= MEM_XY[1]-1 && posiy <= MEM_XY[0]-1 && leitura != '#'&&leitura != '?')
+                    if( posix >= MEM_XY[1]-1 && posiy <= MEM_XY[0]-1 && leitura != '#'&&leitura != '?'&&leitura != 'W')
                     {
                             mvaddch (posiy,posix,SOLO_SALVO);
                             posix = 0;
@@ -53,7 +53,7 @@ void Teclado()
                 			ABRIR_PORTA(posiy,posix,tecla);
                 		}
                 		
-                        if(posix < MEM_XY[1]-1&& leitura != '#'&&leitura != '?')
+                        if(posix < MEM_XY[1]-1&& leitura != '#'&&leitura != '?'&&leitura != 'W')
                         {
                         	mvaddch (posiy,posix,SOLO_SALVO);
                         	posix = posix + 1;
@@ -75,7 +75,7 @@ void Teclado()
                 	{
 			        ABRIR_PORTA(posiy,posix,tecla);
                 	}
-                    if(posiy >= 1&& leitura != '#'&& leitura != '?')
+                    if(posiy >= 1&& leitura != '#'&& leitura != '?'&&leitura != 'W')
                     {
                         mvaddch (posiy,posix,SOLO_SALVO);
                         posiy = posiy - 1;
@@ -96,7 +96,7 @@ void Teclado()
                 	{
                 		ABRIR_PORTA(posiy,posix,tecla);
                 	}
-                    if (posix != 0||posiy!=0&& leitura != '#'&&leitura != '?')
+                    if (posix != 0||posiy!=0&& leitura != '#'&&leitura != '?'&&leitura != 'W')
                     {
                         if( posix < 1&& leitura != '#')
                         {
@@ -108,7 +108,7 @@ void Teclado()
                         }
 
                         else{
-                            if(posix>0&& leitura != '#'&&leitura != '?')
+                            if(posix>0&& leitura != '#'&&leitura != '?'&&leitura != 'W')
                             {
                             	mvaddch (posiy,posix,SOLO_SALVO);
                             	posix = posix - 1;
@@ -131,7 +131,7 @@ void Teclado()
                 	{
                 		ABRIR_PORTA(posiy,posix,tecla);
                 	}
-                    if (posiy < MEM_XY[0]-1&& leitura != '#'&&leitura != '?')
+                    if (posiy < MEM_XY[0]-1&& leitura != '#'&&leitura != '?'&&leitura != 'W')
                     {
                     	mvaddch (posiy,posix,SOLO_SALVO);
                     	posiy = posiy+1;
@@ -208,7 +208,7 @@ int main()
     resizeterm(MEM_XY[0], MEM_XY[1]);
     
   //PRINTA A GRAMA
-    GERAR_GRAMA(MEM_XY);
+    //GERAR_GRAMA(MEM_XY);
     
     // RODA O SCRIPT DE GERAR O MAPA
     GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY,MEM_POSI);
@@ -254,8 +254,9 @@ int main()
         move(posiy, posix);
         DEFINIR_PERSONAGEM(posiy,posix);
         
-        INIMIGO_MOVE();
-
+        INIMIGO_MOVE(0);
+        INIMIGO_MOVE(1);
+        
         if(MEM_XY[0] != RES_Y||MEM_XY[1] != RES_X)
         {
             getmaxyx(stdscr,MEM_XY[0], MEM_XY[1]);

@@ -4,10 +4,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-int INIMIGOS[2][2];
+int INIMIGOS[5][2];
 int contador_i = 0;
 int PERSONAGEM[2];
 char SOLO_S_INIMIGO[2] = {'_', '_'};
+int vida_personagem = 100;
+
+struct corpo
+{
+    int cabeca[6] = 100;
+    int tronco[6]= 100;
+    int braco_e[6]= 100;
+    int braco_d[6]= 100;
+    int perna_e[6]= 100;
+    int perna_d[6]= 100;
+
+}
+
+
+void vidas ()
+{
+
+}
 
 
 int DEFINIR_PERSONAGEM(int  posiy, int posix)
@@ -47,46 +65,46 @@ void GERAR_INIMIGO(int *MEM_XY,int leitura)
         
 }
 
-int INIMIGO_MOVE()
+int INIMIGO_MOVE(int quem)
 {
 
         char SCAN_INIMIGO[5];
         
         //centro
-        mvinch(INIMIGOS[0][0],INIMIGOS[0][1]);
+        mvinch(INIMIGOS[quem][0],INIMIGOS[quem][1]);
         inch();
         SCAN_INIMIGO[0] = inch();
         
         //esquerda
-        mvinch(INIMIGOS[0][0],INIMIGOS[0][1]-1);
+        mvinch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1);
         inch();
         SCAN_INIMIGO[1] = inch();
         
         //cima
-        mvinch(INIMIGOS[0][0]-1,INIMIGOS[0][1]);
+        mvinch(INIMIGOS[quem][0]-1,INIMIGOS[quem][1]);
         inch();
         SCAN_INIMIGO[2] = inch();
         
         //direita
-        mvinch(INIMIGOS[0][0],INIMIGOS[0][1]+1);
+        mvinch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1);
         inch();
         SCAN_INIMIGO[3] = inch();
         
         //baixo
-        mvinch(INIMIGOS[0][0]+1,INIMIGOS[0][1]);
+        mvinch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1]);
         inch();
         SCAN_INIMIGO[4] = inch();
         
         //POSIY > POSIY
-        if(INIMIGOS[0][0] < PERSONAGEM[0])
+        if(INIMIGOS[quem][0] < PERSONAGEM[0])
         {
-            if(INIMIGOS[0][1] == PERSONAGEM[1])
+            if(INIMIGOS[quem][1] == PERSONAGEM[1])
             {
                 if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                 {
-                        mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                        mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                        INIMIGOS[0][0] = INIMIGOS[0][0]+1;
+                        mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                        mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                        INIMIGOS[quem][0] = INIMIGOS[quem][0]+1;
                         SOLO_S_INIMIGO[0] = SCAN_INIMIGO[4];
                 }
             }
@@ -94,39 +112,39 @@ int INIMIGO_MOVE()
                 {
 
                         
-                        if(INIMIGOS[0][1] > PERSONAGEM[1])//POSIX > POSIX
+                        if(INIMIGOS[quem][1] > PERSONAGEM[1])//POSIX > POSIX
                         {
 
                               if (SCAN_INIMIGO[1]== '_'||SCAN_INIMIGO[1] == '0')
                                 {   
-                                   mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]-1,'W');
-                                   mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                   INIMIGOS[0][1] = INIMIGOS[0][1] - 1;
+                                   mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1,'W');
+                                   mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                   INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
                                    SOLO_S_INIMIGO[0] = SCAN_INIMIGO[1];
                                 
                                 }
 
                                 else
                                 {
-                                        if(PERSONAGEM[0] < INIMIGOS[0][0])
+                                        if(PERSONAGEM[0] < INIMIGOS[quem][0])
                                         {
                                               if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                                               {   
-                                                    mvaddch(INIMIGOS[0][0]-1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] - 1;
+                                                    mvaddch(INIMIGOS[quem][0]-1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                                               }
                                         }
 
                                         else{
-                                                     if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                                     if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                                      {
                                                         if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                                         {   
-                                                           mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                           mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                           INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                           mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                           mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                           INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                            SOLO_S_INIMIGO[4] = SCAN_INIMIGO[4];
                                                         }
                                                       }
@@ -134,9 +152,9 @@ int INIMIGO_MOVE()
                                                         {
                                                          if (SCAN_INIMIGO[3]== '_'||SCAN_INIMIGO[3] == '0')
                                                          {   
-                                                           mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                                           mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                           INIMIGOS[0][1] = INIMIGOS[0][1] + 1;
+                                                           mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                                           mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                           INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
                                                            SOLO_S_INIMIGO[0] = SCAN_INIMIGO[3];
                                                          }
                                                         }
@@ -150,36 +168,36 @@ int INIMIGO_MOVE()
                         
                         //CASO PARA BAIXO ESTEJA BLOAQUEADO, VAI PARA DIRETA(caso o personagem esteja pra DIREITA)
                         else{
-                                if(INIMIGOS[0][1] < PERSONAGEM[1])//POSIX < POSIX
+                                if(INIMIGOS[quem][1] < PERSONAGEM[1])//POSIX < POSIX
                                 {
                                          if (SCAN_INIMIGO[3]== '_'||SCAN_INIMIGO[3] == '0')
                                          {   
-                                            mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                            mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                            INIMIGOS[0][1] = INIMIGOS[0][1] + 1;
+                                            mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                            mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                            INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
                                             SOLO_S_INIMIGO[0] = SCAN_INIMIGO[3];
                                          }
                                          else
                                          {
-                                         if(PERSONAGEM[0] < INIMIGOS[0][0])
+                                         if(PERSONAGEM[0] < INIMIGOS[quem][0])
                                              {
                                               if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                                               {   
-                                                mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                                mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                INIMIGOS[0][0] = INIMIGOS[0][0] - 1;
+                                                mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                                mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
                                                 SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                                               }
                                              }
                                               else
                                               { 
-                                              if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                              if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                               {
                                                if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                                 {   
-                                                    mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                    mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[4];
                                 
                                                 }
@@ -188,9 +206,9 @@ int INIMIGO_MOVE()
                                                 {
                                                   if (SCAN_INIMIGO[1]== '_'||SCAN_INIMIGO[1] == '0')
                                                   {   
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]-1,'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][1] = INIMIGOS[0][1] - 1;
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1,'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[1];
                                                   }
                                                 }
@@ -204,17 +222,17 @@ int INIMIGO_MOVE()
                 }
                 
         }
-        if(INIMIGOS[0][0] > PERSONAGEM[0])
+        if(INIMIGOS[quem][0] > PERSONAGEM[0])
         {
-            if(INIMIGOS[0][1] == PERSONAGEM[1])
+            if(INIMIGOS[quem][1] == PERSONAGEM[1])
              {  
-                if(PERSONAGEM[0] < INIMIGOS[0][0])
+                if(PERSONAGEM[0] < INIMIGOS[quem][0])
                 {
                     if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                     {
-                        mvaddch(INIMIGOS[0][0]-1,INIMIGOS[0][1],'W');
-                        mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                        INIMIGOS[0][0] = INIMIGOS[0][0] - 1;
+                        mvaddch(INIMIGOS[quem][0]-1,INIMIGOS[quem][1],'W');
+                        mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                        INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
                         SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                     }
                 }
@@ -223,38 +241,38 @@ int INIMIGO_MOVE()
                 {
 
                         
-                        if(INIMIGOS[0][1] > PERSONAGEM[1])//POSIX > POSIX
+                        if(INIMIGOS[quem][1] > PERSONAGEM[1])//POSIX > POSIX
                         {
                                 //vai pra esquerda
                               if (SCAN_INIMIGO[1]== '_'||SCAN_INIMIGO[1] == '0')
                                 {   
-                                   mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]-1,'W');
-                                   mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                   INIMIGOS[0][1] = INIMIGOS[0][1] - 1;
+                                   mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1,'W');
+                                   mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                   INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
                                    SOLO_S_INIMIGO[0] = SCAN_INIMIGO[1];
                                 
                                 }
                                 //vai pra baixo
                                 else
                                 {
-                                    if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                    if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                     {
                                               if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                               {   
-                                                    mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                    mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                     SOLO_S_INIMIGO[4] = SCAN_INIMIGO[4];
                                               }
                                     }          
                                     else{
-                                                if(PERSONAGEM[0] < INIMIGOS[0][0])
+                                                if(PERSONAGEM[0] < INIMIGOS[quem][0])
                                                 {   
                                                     if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                                                     {   
-                                                     mvaddch(INIMIGOS[0][0]-1,INIMIGOS[0][1],'W');
-                                                     mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                     INIMIGOS[0][0] = INIMIGOS[0][0] - 1;
+                                                     mvaddch(INIMIGOS[quem][0]-1,INIMIGOS[quem][1],'W');
+                                                     mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                     INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
                                                      SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                                                     }
                                                 }
@@ -262,9 +280,9 @@ int INIMIGO_MOVE()
                                                 {
                                                      if (SCAN_INIMIGO[3]== '_'||SCAN_INIMIGO[3] == '0')
                                                      {   
-                                                       mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                                       mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                       INIMIGOS[0][1] = INIMIGOS[0][1] + 1;
+                                                       mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                                       mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                       INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
                                                        SOLO_S_INIMIGO[0] = SCAN_INIMIGO[3];
                                                      }
                                                  }
@@ -276,36 +294,36 @@ int INIMIGO_MOVE()
                         
                         //CASO PARA BAIXO ESTEJA BLOAQUEADO, VAI PARA DIRETA(caso o personagem esteja pra DIREITA)
                         else{
-                                if(INIMIGOS[0][1] < PERSONAGEM[1])//POSIX < POSIX
+                                if(INIMIGOS[quem][1] < PERSONAGEM[1])//POSIX < POSIX
                                 {
                                          if (SCAN_INIMIGO[3]== '_'||SCAN_INIMIGO[3] == '0')
                                          {   
-                                            mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                            mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                            INIMIGOS[0][1] = INIMIGOS[0][1] + 1;
+                                            mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                            mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                            INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
                                             SOLO_S_INIMIGO[0] = SCAN_INIMIGO[3];
                                          }
                                          else
                                          {
-                                            if(PERSONAGEM[0] < INIMIGOS[0][0])
+                                            if(PERSONAGEM[0] < INIMIGOS[quem][0])
                                             {
                                               if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                                               {   
-                                                mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                                mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                INIMIGOS[0][0] = INIMIGOS[0][0] - 1;
+                                                mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                                mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
                                                 SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                                               }
                                             }
                                               else
                                               {
-                                              if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                              if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                               {
                                                 if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                                 {   
-                                                    mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                    mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[4];
                                 
                                                 }
@@ -314,9 +332,9 @@ int INIMIGO_MOVE()
                                                 {
                                                      if (SCAN_INIMIGO[1]== '_'||SCAN_INIMIGO[1] == '0')
                                                      {   
-                                                     mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]-1,'W');
-                                                     mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                     INIMIGOS[0][1] = INIMIGOS[0][1] - 1;
+                                                     mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1,'W');
+                                                     mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                     INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
                                                      SOLO_S_INIMIGO[0] = SCAN_INIMIGO[1];
                                                      } 
                                                 }
@@ -328,52 +346,52 @@ int INIMIGO_MOVE()
         }
         
         
-        if(INIMIGOS[0][0] == PERSONAGEM[0])
+        if(INIMIGOS[quem][0] == PERSONAGEM[0])
         {
-             if(INIMIGOS[0][1] > PERSONAGEM[1])//POSIX > POSIX
+             if(INIMIGOS[quem][1] > PERSONAGEM[1])//POSIX > POSIX
              {
                                 //vai pra esquerda
                               if (SCAN_INIMIGO[1]== '_'||SCAN_INIMIGO[1] == '0')
                                 {   
-                                   mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]-1,'W');
-                                   mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                   INIMIGOS[0][1] = INIMIGOS[0][1] - 1;
+                                   mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1,'W');
+                                   mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                   INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
                                    SOLO_S_INIMIGO[0] = SCAN_INIMIGO[1];
                                 
                                 }
                                 //vai pra baixo
                                 else
-                                {           if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                {           if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                             {
                                               if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                               {   
-                                                    mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                    mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                     SOLO_S_INIMIGO[4] = SCAN_INIMIGO[4];
                                               }
                                             }  
                                               // nao der nada ele tenta ir p direita
                                               else{
-                                                if(PERSONAGEM[0] < INIMIGOS[0][0])
+                                                if(PERSONAGEM[0] < INIMIGOS[quem][0])
                                                 {
                                                     if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                                                     {   
-                                                     mvaddch(INIMIGOS[0][0]-1,INIMIGOS[0][1],'W');
-                                                     mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                     INIMIGOS[0][0] = INIMIGOS[0][0] - 1;
+                                                     mvaddch(INIMIGOS[quem][0]-1,INIMIGOS[quem][1],'W');
+                                                     mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                     INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
                                                      SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                                                     }
                                                 }
                                                 else
                                                 {
-                                                  if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                                  if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                                   {
                                                     if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                                     {   
-                                                    mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                    mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[4];
                                                     }
                                                   }
@@ -381,9 +399,9 @@ int INIMIGO_MOVE()
                                                     {
                                                      if (SCAN_INIMIGO[3]== '_'||SCAN_INIMIGO[3] == '0')
                                                      {   
-                                                       mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                                       mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                       INIMIGOS[0][1] = INIMIGOS[0][1] + 1;
+                                                       mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                                       mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                       INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
                                                        SOLO_S_INIMIGO[0] = SCAN_INIMIGO[3];
                                                      }
                                                     }
@@ -397,45 +415,45 @@ int INIMIGO_MOVE()
                         
 
                         else{
-                                if(INIMIGOS[0][1] < PERSONAGEM[1])//POSIX < POSIX
+                                if(INIMIGOS[quem][1] < PERSONAGEM[1])//POSIX < POSIX
                                 {
                                          if (SCAN_INIMIGO[3]== '_'||SCAN_INIMIGO[3] == '0')
                                          {   
-                                            mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]+1,'W');
-                                            mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                            INIMIGOS[0][1] = INIMIGOS[0][1] + 1;
+                                            mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]+1,'W');
+                                            mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                            INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
                                             SOLO_S_INIMIGO[0] = SCAN_INIMIGO[3];
                                          }
                                          else
                                          {
-                                           if(PERSONAGEM[0] < INIMIGOS[0][0])
+                                           if(PERSONAGEM[0] < INIMIGOS[quem][0])
                                            {
                                               if (SCAN_INIMIGO[2]== '_'||SCAN_INIMIGO[2] == '0')
                                               {   
-                                                mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                 SOLO_S_INIMIGO[0] = SCAN_INIMIGO[2];
                                               }
                                            }
                                               else
                                               {
-                                           if(PERSONAGEM[0] > INIMIGOS[0][0])
+                                           if(PERSONAGEM[0] > INIMIGOS[quem][0])
                                            {
                                               if (SCAN_INIMIGO[4]== '_'||SCAN_INIMIGO[4] == '0')
                                                 {   
-                                                    mvaddch(INIMIGOS[0][0]+1,INIMIGOS[0][1],'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][0] = INIMIGOS[0][0] + 1;
+                                                    mvaddch(INIMIGOS[quem][0]+1,INIMIGOS[quem][1],'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][0] = INIMIGOS[quem][0] + 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[4];
                                 
                                                 }
                                             }
                                                 else if (SCAN_INIMIGO[1]== '_'||SCAN_INIMIGO[1] == '0')
                                                 {   
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1]-1,'W');
-                                                    mvaddch(INIMIGOS[0][0],INIMIGOS[0][1],SOLO_S_INIMIGO[0]);
-                                                    INIMIGOS[0][1] = INIMIGOS[0][1] - 1;
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1]-1,'W');
+                                                    mvaddch(INIMIGOS[quem][0],INIMIGOS[quem][1],SOLO_S_INIMIGO[0]);
+                                                    INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
                                                     SOLO_S_INIMIGO[0] = SCAN_INIMIGO[1];
                                 
                                                 }
