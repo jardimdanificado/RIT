@@ -6,9 +6,10 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <time.h>
-#include "formas.c"
+#include "gerar.c"
 #include "save.c"
-#include "portas_e_utils"
+#include "portas_e_utils.c"
+#include "unidades.c"
 
 
 int posix = 0,posiy = 0;
@@ -72,7 +73,7 @@ void Teclado()
                 	leitura = inch();
                 	if (leitura == '?')
                 	{
-						ABRIR_PORTA(posiy,posix,tecla);
+			        ABRIR_PORTA(posiy,posix,tecla);
                 	}
                     if(posiy >= 1&& leitura != '#'&& leitura != '?')
                     {
@@ -95,7 +96,8 @@ void Teclado()
                 	{
                 		ABRIR_PORTA(posiy,posix,tecla);
                 	}
-                    if (posix != 0||posiy!=0&& leitura != '#'&&leitura != '?'){
+                    if (posix != 0||posiy!=0&& leitura != '#'&&leitura != '?')
+                    {
                         if( posix < 1&& leitura != '#')
                         {
                             	mvaddch (posiy,posix,SOLO_SALVO);
@@ -116,7 +118,7 @@ void Teclado()
                             }
                         }
                     move(posiy,posix);
-                        }
+                    }
                     refresh();
                 }
                 break;
@@ -206,11 +208,13 @@ int main()
     resizeterm(MEM_XY[0], MEM_XY[1]);
     
   //PRINTA A GRAMA
-	GERAR_GRAMA(MEM_XY);
+    GERAR_GRAMA(MEM_XY);
     
     // RODA O SCRIPT DE GERAR O MAPA
     GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY,MEM_POSI);
     GERAR_ARMA(MEM_XY,leitura);
+    GERAR_INIMIGO(MEM_XY, leitura);
+    GERAR_INIMIGO(MEM_XY, leitura);
    
    //POSICIONA PERSONAGEM E ENUMERA AS PORTAS(ALEM DE DISTRIBUIR E ALOCAR) 
    	int perso = 0;
@@ -242,12 +246,15 @@ int main()
     	}
 
 
-	// LOOP DO TECLADO
+	// LOOP DO TECLADO/jogo
 
     while(tecla != 'q')
     {
         mvprintw(posiy, posix,"@");
         move(posiy, posix);
+        DEFINIR_PERSONAGEM(posiy,posix);
+        
+        INIMIGO_MOVE();
 
         if(MEM_XY[0] != RES_Y||MEM_XY[1] != RES_X)
         {
@@ -260,8 +267,8 @@ int main()
         else
         {
        		RES_Y= MEM_XY[0];
-   			RES_X= MEM_XY[1];
-            Teclado();
+   		RES_X= MEM_XY[1];
+                Teclado();
         }
         MEM_POSI[0] = posix;
         MEM_POSI[1] = posiy;
