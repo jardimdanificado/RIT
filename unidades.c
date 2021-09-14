@@ -9,7 +9,7 @@ int contador_i = 0;
 int PERSONAGEM[2];
 char SOLO_S_INIMIGO[2] = {'_', '_'};
 int vida_personagem = 100;
-
+/*
 struct corpo
 {
     int cabeca[6] = 100;
@@ -20,7 +20,7 @@ struct corpo
     int perna_d[6]= 100;
 
 }
-
+*/
 
 void vidas ()
 {
