@@ -12,29 +12,58 @@ char SOLO_S_INIMIGO[2] = {
   '_'
 };
 int vida_personagem = 100;
+int vida_inimigos[5] = {100,100,100,100,100};
 
-/*struct corpo;
+void ATACAR(int posiy, int posix)
 {
-  int cabeca[6];
-  int tronco[6];
-  int braco_e[6];
-  int braco_d[6];
-  int perna_e[6];
-  int perna_d[6];
+  int dano = rand()%30;
+  for (int i = 0; i < 5; i ++)
+	{
+			if(INIMIGOS[i][0] == posiy && INIMIGOS[i][1] == posix)
+			{
+				vida_inimigos[i] = vida_inimigos[i] - dano;
+		  }
+	}
+
 
 }
-*/
 
-void vidas () {}
+void MORTE_INIMIGO(int posiy,int posix,int SOLO_SALVO)
+{
+ mvinch(posiy,posix);
+ inch();
+ int seila = inch();
+ for (int i = 0; i < 6; i ++)
+	{
+	  
+	  /*  if(seila == '@')
+	    {
+	      if(membros[i][z] <20)
+		  	{
+				mvaddch(posiy,posix,SOLO_SALVO);
+		    }
+	    }*/
+			if(vida_inimigos[i] <20)
+			{
+				mvaddch(posiy,posix,SOLO_S_INIMIGO[i]);
+				INIMIGOS[i][0] = -1;
+				INIMIGOS[i][0] = -1;
+		  }
+		 
+	}
+
+}
 
 
-void DEFINIR_PERSONAGEM(int  posiy, int posix) {
+void DEFINIR_PERSONAGEM(int  posiy, int posix) 
+{
   PERSONAGEM[0] = posiy;
   PERSONAGEM[1] = posix;
 }
 
 //GERA E DEFINE UM INIMIGOS
-void GERAR_INIMIGO(int *MEM_XY, int leitura) {
+void GERAR_INIMIGO(int *MEM_XY, int leitura) 
+{
   int roleta = (rand() % (15- 8+ 1)) + 8;
   int cronometro = 0;
 

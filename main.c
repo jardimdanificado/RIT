@@ -33,7 +33,8 @@ void Teclado()
         switch(tecla)
         {
 //--------------------------------------------------------------------------------
-            
+// TECLAS
+//-------------------------------------------------------------------------------
                 case KEY_RIGHT:
                 {
                 	mvinch(posiy,posix+1);
@@ -61,6 +62,11 @@ void Teclado()
                         	inch();
                         	SOLO_SALVO = inch();
                     	}
+                    	if(leitura == 'W')
+                    	{
+                    	    ATACAR(posiy,posix+1);
+                    	    MORTE_INIMIGO(posiy,posix,SOLO_SALVO);
+                    	}
                     }
                 move(posiy,posix);
                 refresh();
@@ -83,6 +89,11 @@ void Teclado()
                         inch();
                         SOLO_SALVO = inch();
                     }
+                    if(leitura == 'W')
+                   	{
+                    	ATACAR(posiy-1,posix);
+                    	MORTE_INIMIGO(posiy-1,posix,SOLO_SALVO);
+                    }
                     move(posiy,posix);
                     refresh();
                 }
@@ -92,6 +103,11 @@ void Teclado()
                 {
                 	mvinch(posiy,posix-1);
                 	leitura = inch();
+                	if(leitura == 'W')
+                    {
+                    	    ATACAR(posiy,posix-1);
+                    	     MORTE_INIMIGO(posiy,posix-1,SOLO_SALVO);
+                   	}
                 	if (leitura == '?')
                 	{
                 		ABRIR_PORTA(posiy,posix,tecla);
@@ -116,6 +132,7 @@ void Teclado()
                        		 	inch();
                         		SOLO_SALVO = inch() ;
                             }
+                            
                         }
                     move(posiy,posix);
                     }
@@ -127,6 +144,11 @@ void Teclado()
                 {
                 	mvinch(posiy+1,posix);
                 	leitura = inch();
+                	if(leitura == 'W')
+                    	{
+                    	    ATACAR(posiy+1,posix);
+                    	    MORTE_INIMIGO(posiy+1,posix,SOLO_SALVO);
+                    	}
                 	if (leitura == '?')
                 	{
                 		ABRIR_PORTA(posiy,posix,tecla);
@@ -254,8 +276,14 @@ int main()
         move(posiy, posix);
         DEFINIR_PERSONAGEM(posiy,posix);
         
+        
+        
         INIMIGO_MOVE(0);
         INIMIGO_MOVE(1);
+        
+        
+
+        
         
         if(MEM_XY[0] != RES_Y||MEM_XY[1] != RES_X)
         {
