@@ -235,8 +235,21 @@ int main()
     // RODA O SCRIPT DE GERAR O MAPA
     GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY,MEM_POSI);
     GERAR_ARMA(MEM_XY,leitura);
-    GERAR_INIMIGO(MEM_XY, leitura);
-    GERAR_INIMIGO(MEM_XY, leitura);
+    srand((clock()));
+    
+    int random = 0;
+    while(random <3)
+    {
+        random = rand()%4;
+    }
+
+    
+    for (int i = 0; i < random; i++)
+    {
+            GERAR_INIMIGO(MEM_XY, leitura);
+    }
+   // GERAR_INIMIGO(MEM_XY, leitura);
+   // GERAR_INIMIGO(MEM_XY, leitura);
    
    //POSICIONA PERSONAGEM E ENUMERA AS PORTAS(ALEM DE DISTRIBUIR E ALOCAR) 
    	int perso = 0;
@@ -277,9 +290,12 @@ int main()
         DEFINIR_PERSONAGEM(posiy,posix);
         
         
+        for (int i = 0; i < 5; i++)
+        {
+            INIMIGO_MOVE(i);
+        }
         
-        INIMIGO_MOVE(0);
-        INIMIGO_MOVE(1);
+        
         
         
 

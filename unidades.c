@@ -7,10 +7,7 @@
 int INIMIGOS[5][2];
 int contador_i = 0;
 int PERSONAGEM[2];
-char SOLO_S_INIMIGO[2] = {
-  '_',
-  '_'
-};
+char SOLO_S_INIMIGO[5] = {'_',  '_','_','_','_'};
 int vida_personagem = 100;
 int vida_inimigos[5] = {100,100,100,100,100};
 
@@ -78,7 +75,7 @@ void GERAR_INIMIGO(int *MEM_XY, int leitura)
 
 }
 
-void INIMIGO_MOVE(int quem) {
+int INIMIGO_MOVE(int quem) {
 
   char SCAN_INIMIGO[5];
 
@@ -106,7 +103,55 @@ void INIMIGO_MOVE(int quem) {
   mvinch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1]);
   inch();
   SCAN_INIMIGO[4] = inch();
-
+  
+  if(SCAN_INIMIGO[1] == '?'||SCAN_INIMIGO[2] == '?'||SCAN_INIMIGO[3] == '?'||SCAN_INIMIGO[4] == '?')
+  {
+    if(SCAN_INIMIGO[1] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]-1);
+        return (0);
+    }
+    if(SCAN_INIMIGO[2] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]-1, INIMIGOS[quem][1]);
+        return (0);
+    }
+    if(SCAN_INIMIGO[3] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]+1);
+        return (0);
+    }
+    if(SCAN_INIMIGO[4] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]+1, INIMIGOS[quem][1]);
+        return (0);
+    }
+    
+  }
+  if(SCAN_INIMIGO[1] == '@'||SCAN_INIMIGO[2] == '@'||SCAN_INIMIGO[3] == '@'||SCAN_INIMIGO[4] == '@')
+  {
+    if(SCAN_INIMIGO[1] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]-1);
+        return (0);
+    }
+    if(SCAN_INIMIGO[2] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]-1, INIMIGOS[quem][1]);
+        return (0);
+    }
+    if(SCAN_INIMIGO[3] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]+1);
+        return (0);
+    }
+    if(SCAN_INIMIGO[4] == '?')
+    {
+        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]+1, INIMIGOS[quem][1]);
+        return (0);
+    }
+    
+  }
   //POSIY > POSIY
   if(INIMIGOS[quem][0] < PERSONAGEM[0]) {
     if(INIMIGOS[quem][1] == PERSONAGEM[1]) {

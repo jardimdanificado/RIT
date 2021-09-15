@@ -73,6 +73,30 @@ int ABRIR_PORTA(int y, int x,int tecla)
 	}
 }
 
+int ABRIR_PORTA_INIMIGO(int y, int x)
+{
+	
+	for (int i = 0; i < 10; i ++)
+	{
+			if(PORTA_XY[i][0] == y && PORTA_XY[i][1] == x)
+			{
+				if(PORTA_ESTADO[i]== 'F')
+				{
+					PORTA_ESTADO[i]= 'A';
+					mvaddch(y,x,'0');
+					return(1);
+					i = 11;
+				}
+				else
+				{
+					return(0);
+					i = 11;
+				}
+			}
+	}
+}
+
+
 void FECHAR_PORTA(int y, int x,int tecla)
 {
         tecla = getch();
@@ -156,7 +180,7 @@ char PEGAR_ITEM(int yc, int xc,int tecla)
 		char ler;
 		ler = inch();
 		
-		if(ler != '_'&&ler != '#'&&ler !='?'&&ler!='0')
+		if(ler != '_'&&ler != '#'&&ler !='?'&&ler!='0'&&ler != 'W')
 		{
         		mvprintw(yc,xc,"_");
         		return(ler);

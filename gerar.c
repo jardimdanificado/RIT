@@ -95,37 +95,21 @@ void GERAR_PORTAS(int * MEM_XY)
     {
         	for(int x = 0;x<MEM_XY[1];x++)
        	{
-    		char yps[12];
+
             mvinch(y,x);
             inch();
-            //LADOS E centro
             l2 = inch();
+            
             mvinch(y,x-1);
             inch();
             l1 = inch();
+            
             mvinch(y,x+1);
             inch();
             l3 = inch();
-            //Y ESCROTO
-            for (int i = 0; i <= 5; i ++ )
-            {	
-            	
-            	mvinch((y-i),x);
-            	inch();
-            	yps[i] = inch();
-            }
-            for (int i = 6; i <= 11; i ++ )
-            {
-            	mvinch((y+i),x);
-            	inch();
-            	yps[i] = inch();
-            }
+            
             if(l1 == '_' && l2 == '#' && l3 == '_')
             {
-              //if(x%2 == 0)
-             // {
-            	if(yps[0] != '0'&&yps[1] != '0'&&yps[2] != '0'&&yps[3] != '0'&&yps[4] != '0'&&yps[5] != '0'&&yps[6] != '0'&&yps[7] != '0'&&yps[8] != '0'&&yps[9] != '0'&&yps[10] != '0'&&yps[11] != '0')
-            	{
             		if(CONT%3 == 0)
             		{
             			move(y+1,x);
@@ -145,9 +129,9 @@ void GERAR_PORTAS(int * MEM_XY)
             			
             			}
             		}         	
-            	}
+          
             CONT++;
-             // }
+    
            	}
   		}
    	}	    
