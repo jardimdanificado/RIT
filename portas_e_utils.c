@@ -167,44 +167,58 @@ char PEGAR_ITEM(int yc, int xc,int tecla)
 		}
 }
 
-char DROPAR_ITEM(int yd, int xd,int ITEM)
+char DROPAR_ITEM(int yd, int xd,char item)
 {
-                int ler;
-               ler = getch();
-               switch(ler)
+            inch();
+            int ler;
+            ler = getch();
+            switch(ler)
         	{
        		case KEY_DOWN:
        		{
+       		mvinch(yd+1,xd);
        		yd = yd+1;
+       		
        		}
        		break;
        	
        		case KEY_LEFT:
        		{
+       		mvinch(yd,xd-1);
        		xd=xd-1;
        		}
        		break;
        	
        		case KEY_UP:
        		{
+       		mvinch(yd-1,xd);
        		yd=yd-1;
        		}
        		break;
 
 	        case KEY_RIGHT:
 	        {
-                	xd=xd+1;
+	        mvinch(yd,xd+1);
+            xd=xd+1;
 	        }
         	break;
        	 }
+       	 
+       	 char ler1;
        	 mvinch(yd,xd);
-         ler = inch();
+       	 inch();
+         ler1 = inch();
 
-       	 if(ler != '#'||ler != '0'||ler != '?')
+       	 if(ler1 != '#'&&ler1 != '0'&&ler1 != '?'&& ler1 != 'W')
          {
-                mvaddch(yd,xd,ITEM);
+                mvaddch(yd,xd,item);
                 return('0');
-	 }
+	     }
+	     else
+	     {
+	       return(item);
+	     
+	     }
 
 }
 
