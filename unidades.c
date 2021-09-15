@@ -28,24 +28,14 @@ void ATACAR(int posiy, int posix)
 
 }
 
-void MORTE_INIMIGO(int posiy,int posix,int SOLO_SALVO)
+void MORTE_INIMIGO()
 {
- mvinch(posiy,posix);
- inch();
- int seila = inch();
  for (int i = 0; i < 6; i ++)
 	{
-	  
-	  /*  if(seila == '@')
-	    {
-	      if(membros[i][z] <20)
-		  	{
-				mvaddch(posiy,posix,SOLO_SALVO);
-		    }
-	    }*/
+	
 			if(vida_inimigos[i] <20)
 			{
-				mvaddch(posiy,posix,SOLO_S_INIMIGO[i]);
+				mvaddch(INIMIGOS[i][0],INIMIGOS[i][1],SOLO_S_INIMIGO[i]);
 				INIMIGOS[i][0] = -1;
 				INIMIGOS[i][1] = -1;
 		  }

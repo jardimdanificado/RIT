@@ -65,7 +65,7 @@ void Teclado()
                     	if(leitura == 'W')
                     	{
                     	    ATACAR(posiy,posix+1);
-                    	    MORTE_INIMIGO(posiy,posix,SOLO_SALVO);
+                    	    MORTE_INIMIGO();
                     	}
                     }
                 move(posiy,posix);
