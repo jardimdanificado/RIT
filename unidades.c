@@ -47,7 +47,7 @@ void MORTE_INIMIGO(int posiy,int posix,int SOLO_SALVO)
 			{
 				mvaddch(posiy,posix,SOLO_S_INIMIGO[i]);
 				INIMIGOS[i][0] = -1;
-				INIMIGOS[i][0] = -1;
+				INIMIGOS[i][1] = -1;
 		  }
 		 
 	}
