@@ -345,7 +345,7 @@ int main()
         DEFINIR_PERSONAGEM(posiy,posix);
         
         
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 15; i++)
         {
             INIMIGO_MOVE(i);
         }
