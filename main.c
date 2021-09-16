@@ -293,9 +293,9 @@ int main()
     srand((clock()));
     
     int random = 0;
-    while(random <3)
+    while(random <5)
     {
-        random = rand()%4;
+        random = rand()%15;
     }
 
     
