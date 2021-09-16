@@ -11,6 +11,152 @@ char SOLO_S_INIMIGO[15] = {'_','_','_','_','_','_','_','_','_','_','_','_','_','
 int vida_personagem = 100;
 int vida_inimigos[15] = {100,100,100,100,100};
 int QNT_CHAO = 0;
+int PORTAS_UNI[50][2];
+int SALAS_INICIO[40][2];
+int SALAS_FINAL[40][2];
+
+
+void PLEASE_PORTAS(int *y,int *x)
+{
+    for (int i = 0; i < 50; i ++)
+    {
+        PORTAS_UNI[i][0] = y[i];
+        PORTAS_UNI[i][1] = x[i];
+    }
+    
+
+}
+
+void PLEASE_SALAS(int* iy,int* ix,int* fy,int* fx)
+{
+    for (int i = 0; i < 40; i ++)
+    {
+        SALAS_INICIO[i][0] = iy[i];
+        SALAS_INICIO[i][1] = ix[i];
+        SALAS_FINAL[i][0] = fy[i];
+        SALAS_FINAL[i][1] = fx[i];
+    }
+    
+
+}
+int MENORDISTANCIAX[15], MENORDISTANCIAY[15];
+
+void CALCULAR_PORTA(int quem)
+{
+     if (PERSONAGEM[0] > INIMIGOS[quem][0])
+     {
+         if (PERSONAGEM[1] > INIMIGOS[quem][1])
+         {
+           MENORDISTANCIAX[quem] = 23098382,MENORDISTANCIAY[quem] = 492801242;  
+           
+            
+                for (int i = 0; i < 50; i ++)
+                {
+                   
+                    
+                    
+                    if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAY[quem]>INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAX[quem]>INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                }
+            
+            
+         }
+         if (PERSONAGEM[1] < INIMIGOS[quem][1])
+         {
+                
+         MENORDISTANCIAX[quem] = 23098382,MENORDISTANCIAY[quem] = 492801242;
+                for (int i = 0; i < 50; i ++)
+                {
+
+                    if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAY[quem]>INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAX[quem]<INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                }
+         }
+     }
+     if (PERSONAGEM[0] < INIMIGOS[quem][0])
+     {
+         if (PERSONAGEM[1] > INIMIGOS[quem][1])
+         {
+         MENORDISTANCIAX[quem] = 23098382,MENORDISTANCIAY[quem] = 492801242;
+         for (int i = 0; i < 50; i ++)
+                {
+                 
+                    if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAY[quem]<INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAX[quem]>INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                }
+         }
+         if (PERSONAGEM[1] < INIMIGOS[quem][1])
+         {
+         
+         
+             MENORDISTANCIAX[quem] = 23098382,MENORDISTANCIAY[quem] = 492801242;
+         
+                for (int i = 0; i < 50; i ++)
+               {
+                    
+                    
+                    if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAY[quem]<INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else if(MENORDISTANCIAY[quem]>PORTAS_UNI[i][0]&&MENORDISTANCIAX[quem]>PORTAS_UNI[i][1]&&MENORDISTANCIAX[quem]<INIMIGOS[quem][0])
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                    else
+                    {
+                        MENORDISTANCIAY[quem] = PORTAS_UNI[i][0];
+                        MENORDISTANCIAX[quem] = PORTAS_UNI[i][1];
+                    }
+                }
+            
+         }
+     }
+     
+     
+     
+}
 
 void ATACAR(int posiy, int posix)
 {
@@ -498,9 +644,9 @@ int INIMIGO_MOVE(int quem) {
 //******************************************************************
 //-------------------------------------------------------------------
 
-int INIMIGO_MOVE_PORTA(int quem) 
-{
-char SCAN_INIMIGO[5];
+int INIMIGO_MOVE_PORTA(int quem) {
+
+  char SCAN_INIMIGO[5];
 
   //centro
   mvinch(INIMIGOS[quem][0], INIMIGOS[quem][1]);
@@ -563,16 +709,14 @@ char SCAN_INIMIGO[5];
         mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
         INIMIGOS[quem][0] = INIMIGOS[quem][0]+1;
         SOLO_S_INIMIGO[quem] = SCAN_INIMIGO[4];
-      }
         return (0);
-    }
-  
-  
+      }
+    
+  }
   //POSIY > POSIY
-  if(INIMIGOS[quem][0] < PERSONAGEM[0]) {
-    if(INIMIGOS[quem][1] == PERSONAGEM[1]) {
-      if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') 
-      {
+  if(INIMIGOS[quem][0] < MENORDISTANCIAY[quem]) {
+    if(INIMIGOS[quem][1] == MENORDISTANCIAX[quem]) {
+      if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
         mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
         mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
         INIMIGOS[quem][0] = INIMIGOS[quem][0]+1;
@@ -583,7 +727,7 @@ char SCAN_INIMIGO[5];
     {
 
 
-      if(INIMIGOS[quem][1] > PERSONAGEM[1])//POSIX > POSIX
+      if(INIMIGOS[quem][1] > MENORDISTANCIAX[quem])//POSIX > POSIX
       {
 
         if (SCAN_INIMIGO[1] == '_' || SCAN_INIMIGO[1] == '0') {
@@ -596,7 +740,7 @@ char SCAN_INIMIGO[5];
 
         else
         {
-          if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+          if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
             if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
               mvaddch(INIMIGOS[quem][0]-1, INIMIGOS[quem][1], 'W');
               mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -606,7 +750,7 @@ char SCAN_INIMIGO[5];
           }
 
           else {
-            if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+            if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
               if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
                 mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -633,7 +777,7 @@ char SCAN_INIMIGO[5];
 
       //CASO PARA BAIXO ESTEJA BLOAQUEADO, VAI PARA DIRETA(caso o personagem esteja pra DIREITA)
       else {
-        if(INIMIGOS[quem][1] < PERSONAGEM[1])//POSIX < POSIX
+        if(INIMIGOS[quem][1] < MENORDISTANCIAX[quem])//POSIX < POSIX
         {
           if (SCAN_INIMIGO[3] == '_' || SCAN_INIMIGO[3] == '0') {
             mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]+1, 'W');
@@ -643,7 +787,7 @@ char SCAN_INIMIGO[5];
           }
           else
           {
-            if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+            if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
               if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]+1, 'W');
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -653,7 +797,7 @@ char SCAN_INIMIGO[5];
             }
             else
             {
-              if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+              if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
                 if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
                   mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
                   mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -681,9 +825,9 @@ char SCAN_INIMIGO[5];
     }
 
   }
-  if(INIMIGOS[quem][0] > PERSONAGEM[0]) {
-    if(INIMIGOS[quem][1] == PERSONAGEM[1]) {
-      if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+  if(INIMIGOS[quem][0] > MENORDISTANCIAY[quem]) {
+    if(INIMIGOS[quem][1] == MENORDISTANCIAX[quem]) {
+      if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
         if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
           mvaddch(INIMIGOS[quem][0]-1, INIMIGOS[quem][1], 'W');
           mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -696,7 +840,7 @@ char SCAN_INIMIGO[5];
     {
 
 
-      if(INIMIGOS[quem][1] > PERSONAGEM[1])//POSIX > POSIX
+      if(INIMIGOS[quem][1] > MENORDISTANCIAX[quem])//POSIX > POSIX
       {
         //vai pra esquerda
         if (SCAN_INIMIGO[1] == '_' || SCAN_INIMIGO[1] == '0') {
@@ -709,7 +853,7 @@ char SCAN_INIMIGO[5];
         //vai pra baixo
         else
         {
-          if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+          if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
             if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
               mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
               mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -718,7 +862,7 @@ char SCAN_INIMIGO[5];
             }
           }
           else {
-            if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+            if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
               if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
                 mvaddch(INIMIGOS[quem][0]-1, INIMIGOS[quem][1], 'W');
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -743,7 +887,7 @@ char SCAN_INIMIGO[5];
 
       //CASO PARA BAIXO ESTEJA BLOAQUEADO, VAI PARA DIRETA(caso o personagem esteja pra DIREITA)
       else {
-        if(INIMIGOS[quem][1] < PERSONAGEM[1])//POSIX < POSIX
+        if(INIMIGOS[quem][1] < MENORDISTANCIAX[quem])//POSIX < POSIX
         {
           if (SCAN_INIMIGO[3] == '_' || SCAN_INIMIGO[3] == '0') {
             mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]+1, 'W');
@@ -753,7 +897,7 @@ char SCAN_INIMIGO[5];
           }
           else
           {
-            if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+            if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
               if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]+1, 'W');
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -763,7 +907,7 @@ char SCAN_INIMIGO[5];
             }
             else
             {
-              if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+              if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
                 if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
                   mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
                   mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -789,8 +933,8 @@ char SCAN_INIMIGO[5];
   }
 
 
-  if(INIMIGOS[quem][0] == PERSONAGEM[0]) {
-    if(INIMIGOS[quem][1] > PERSONAGEM[1])//POSIX > POSIX
+  if(INIMIGOS[quem][0] == MENORDISTANCIAY[quem]) {
+    if(INIMIGOS[quem][1] > MENORDISTANCIAX[quem])//POSIX > POSIX
     {
       //vai pra esquerda
       if (SCAN_INIMIGO[1] == '_' || SCAN_INIMIGO[1] == '0') {
@@ -803,7 +947,7 @@ char SCAN_INIMIGO[5];
       //vai pra baixo
       else
       {
-        if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+        if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
           if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
             mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
             mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -813,7 +957,7 @@ char SCAN_INIMIGO[5];
         }
         // nao der nada ele tenta ir p direita
         else {
-          if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+          if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
             if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
               mvaddch(INIMIGOS[quem][0]-1, INIMIGOS[quem][1], 'W');
               mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -823,7 +967,7 @@ char SCAN_INIMIGO[5];
           }
           else
           {
-            if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+            if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
               if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
                 mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
                 mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -850,7 +994,7 @@ char SCAN_INIMIGO[5];
 
 
   else {
-    if(INIMIGOS[quem][1] < PERSONAGEM[1])//POSIX < POSIX
+    if(INIMIGOS[quem][1] < MENORDISTANCIAX[quem])//POSIX < POSIX
     {
       if (SCAN_INIMIGO[3] == '_' || SCAN_INIMIGO[3] == '0') {
         mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]+1, 'W');
@@ -860,7 +1004,7 @@ char SCAN_INIMIGO[5];
       }
       else
       {
-        if(PERSONAGEM[0] < INIMIGOS[quem][0]) {
+        if(MENORDISTANCIAY[quem] < INIMIGOS[quem][0]) {
           if (SCAN_INIMIGO[2] == '_' || SCAN_INIMIGO[2] == '0') {
             mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
             mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -870,7 +1014,7 @@ char SCAN_INIMIGO[5];
         }
         else
         {
-          if(PERSONAGEM[0] > INIMIGOS[quem][0]) {
+          if(MENORDISTANCIAY[quem] > INIMIGOS[quem][0]) {
             if (SCAN_INIMIGO[4] == '_' || SCAN_INIMIGO[4] == '0') {
               mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
               mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
@@ -879,8 +1023,7 @@ char SCAN_INIMIGO[5];
 
             }
           }
-          else if (SCAN_INIMIGO[1] == '_' || SCAN_INIMIGO[1] == '0') 
-          {
+          else if (SCAN_INIMIGO[1] == '_' || SCAN_INIMIGO[1] == '0') {
             mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]-1, 'W');
             mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
             INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
@@ -892,44 +1035,19 @@ char SCAN_INIMIGO[5];
     }
   }
 }
-
-
-
-
-
-
-
-
-
-int NAMESMASALA(int qual,int inicioy,int iniciox, int fimy, int fimx)
-{
-    if (INIMIGOS[qual][0] > inicioy && INIMIGOS[qual][0] < fimy && INIMIGOS[qual][1] > iniciox && INIMIGOS[qual][1] < fimx)
-    {
-        for (int y = inicioy; y < fimy ; y++)
-        {
-            for (int x = iniciox; x < fimx; x++)
-            {
-                mvinch(y,x);
-                inch();
-                int leitu = inch();
-                if(leitu == '@')
-                {
-                    INIMIGO_MOVE(qual);
-                }
-                else
-                {
-                    INIMIGO_MOVE_PORTA(qual);
-                }
-            }
-        }
-    }
-    else
-    {
-        INIMIGO_MOVE(qual);
-    }
-    return(0);
-    
-}
-
-
   
+  
+  
+  
+int NAMESMASALA(int quem,int ARMAZEM_INICIOY,int ARMAZEM_INICIOX,int ARMAZEM_FIMY,int ARMAZEM_FIMX)
+{
+   if(PERSONAGEM[0]>=ARMAZEM_INICIOY&&PERSONAGEM[1]>=ARMAZEM_INICIOX&&PERSONAGEM[0]<=ARMAZEM_FIMY&&PERSONAGEM[1]<=ARMAZEM_FIMX)   
+   {
+        INIMIGO_MOVE(quem);
+   }
+   else
+   {
+       INIMIGO_MOVE_PORTA(quem);
+   
+   }
+}   

@@ -295,6 +295,8 @@ int main()
     
     srand((clock()));
     
+    int portasy[50];
+    int portasx[50];
     int random = 0;
     while(random <5)
     {
@@ -360,7 +362,19 @@ int main()
     	   }
     	}
 
-
+        for (int i = 0; i < 50; i ++)
+        {
+            portasy[i] = get_portay(i);
+        }
+        
+        for (int i = 0; i < 50; i ++)
+        {
+            portasx[i] = get_portax(i);
+        }
+        
+        PLEASE_PORTAS(portasy,portasx);
+        PLEASE_SALAS(ARMAZEM_INICIOY,ARMAZEM_INICIOX,ARMAZEM_FIMY,ARMAZEM_FIMX);
+        
 	// LOOP DO TECLADO/jogo
 
     while(tecla != 'q')
@@ -375,11 +389,10 @@ int main()
         
             for (int i = 0; i < 15; i++)
             {
-                NAMESMASALA(i, ARMAZEM_INICIOY[q], ARMAZEM_INICIOX[i], ARMAZEM_FIMY[i],ARMAZEM_FIMX[i]);
+                NAMESMASALA(i, ARMAZEM_INICIOY[q], ARMAZEM_INICIOX[q], ARMAZEM_FIMY[q],ARMAZEM_FIMX[q]);
             }
         }
-
-
+        
         
         
         if(MEM_XY[0] != RES_Y||MEM_XY[1] != RES_X)

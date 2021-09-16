@@ -24,6 +24,9 @@ unsigned long mix(unsigned long a, unsigned long b, unsigned long c)
 //CODIGO DA NET, GERA NUMERO ALEATORIO ENTRE LOWER E UPPER
 
 
+
+
+
 int RANDOM_X=0,RANDOM_H, RANDOM_W, RANDOM_Y =0;
 int RANDOM_Q = 0;
 

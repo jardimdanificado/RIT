@@ -24,6 +24,18 @@ void DEFINIR_PORTA(int y,int x, int num_porta)
 	PORTA_ESTADO[num_porta] = 'F';
 }
 
+int get_portay(int i)
+{
+    int retorno = PORTA_XY[i][0];
+    return(retorno);
+}
+
+int get_portax(int i)
+{
+    int retorno = PORTA_XY[i][1];
+    return(retorno);
+}
+
 //ESSA FUNÇÃO RETORNA SE A PORTA ESTA FECHADA OU ABERTA, E SE TIVER ABERTA ABRE.
 // O=FECHADA 1=ABERTA
 int ABRIR_PORTA(int y, int x,int tecla)
