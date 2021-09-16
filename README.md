@@ -1,15 +1,21 @@
-# RIT
-"(ROGUELIKE)INDIAN TALES" bare-bones roguelike, fully writen in pure C, only using standard libs and ncurses.
+# INDIAN TALES
+
+"bare-bones roguelike, fully writen in pure C, only using standard libs and ncurses.
+
+"Contos Indianos, Roguelike".
+
+source escrita em *português*
+
+controls
+--------------
+controls: C close door, G grab object, 1-5 drop itens.
 
 
-roguelike totalmente em portugues, "Contos Indianos, Roguelike".
-
-controles: C fecha porta, G pega objeto, S salva um bloco de texto com a leitura da tela.
 
 
 
 compile: 
-
+----------------
 
 requirements : build-essential, gcc, clang, ncurses-dev, git
 
