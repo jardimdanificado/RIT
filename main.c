@@ -286,8 +286,10 @@ int main()
     
     // RODA O SCRIPT DE GERAR O MAPA
     GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY);
-    GERAR_ARMA(MEM_XY,leitura,'/');
-    GERAR_ARMA(MEM_XY,leitura,'T');
+    int N_PISOS = CONTAR_CHAO(MEM_XY);
+    GERAR_ITEM(MEM_XY,leitura,'/',N_PISOS);
+    GERAR_ITEM(MEM_XY,leitura,'T',N_PISOS);
+    
     srand((clock()));
     
     int random = 0;

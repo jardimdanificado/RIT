@@ -15,6 +15,8 @@
 int PORTA_XY[50][2];
 char PORTA_ESTADO[50];
 
+
+
 void DEFINIR_PORTA(int y,int x, int num_porta)
 {
 	PORTA_XY[num_porta][0]=y;

@@ -208,10 +208,10 @@ void GERAR_PORTAS_VERTICAL(int * MEM_XY)
   	  }	    
 }
 
-void GERAR_ARMA(int *MEM_XY,int leitura,char ITEM)
+void GERAR_ITEM(int *MEM_XY,int leitura,char ITEM,int N_PISOS)
 {
 
-        int roleta = (rand() % (15- 8+ 1)) + 8;
+    int roleta = (rand() % (N_PISOS - 8+ 1)) + 8;
 	int cronometro =0;
 	
 	for(int y = 0;y<MEM_XY[0];y++)

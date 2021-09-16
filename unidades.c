@@ -4,17 +4,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-int INIMIGOS[5][2];
+int INIMIGOS[15][2];
 int contador_i = 0;
 int PERSONAGEM[2];
-char SOLO_S_INIMIGO[5] = {'_',  '_','_','_','_'};
+char SOLO_S_INIMIGO[15] = {'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'};
 int vida_personagem = 100;
-int vida_inimigos[5] = {100,100,100,100,100};
+int vida_inimigos[15] = {100,100,100,100,100};
+int QNT_CHAO = 0;
 
 void ATACAR(int posiy, int posix)
 {
   int dano = rand()%30;
-  for (int i = 0; i < 5; i ++)
+  for (int i = 0; i < 15; i ++)
 	{
 			if(INIMIGOS[i][0] == posiy && INIMIGOS[i][1] == posix)
 			{
@@ -27,7 +28,7 @@ void ATACAR(int posiy, int posix)
 
 void MORTE_INIMIGO()
 {
- for (int i = 0; i < 6; i ++)
+ for (int i = 0; i < 15; i ++)
 	{
 	
 			if(vida_inimigos[i] <20)
@@ -48,10 +49,29 @@ void DEFINIR_PERSONAGEM(int  posiy, int posix)
   PERSONAGEM[1] = posix;
 }
 
+int CONTAR_CHAO(int *MEM_XY)
+{
+ for(int y = 0; y < MEM_XY[0]; y++) 
+ {
+    for(int x = 0; x < MEM_XY[1]; x++) 
+    {
+      mvinch(y, x);
+      inch();
+      int leitur = inch();
+      if(leitur == '_')
+      {
+      QNT_CHAO++;
+      
+      }
+    }
+ }
+
+}
+
 //GERA E DEFINE UM INIMIGOS
 void GERAR_INIMIGO(int *MEM_XY, int leitura) 
 {
-  int roleta = (rand() % (15- 8+ 1)) + 8;
+  int roleta = (rand() % (QNT_CHAO- 8+ 1)) + 8;
   int cronometro = 0;
 
   for(int y = 0; y < MEM_XY[0]; y++) {
