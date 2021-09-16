@@ -25,10 +25,12 @@ unsigned long mix(unsigned long a, unsigned long b, unsigned long c)
 
 
 int RANDOM_X=0,RANDOM_H, RANDOM_W, RANDOM_Y =0;
+int RANDOM_Q = 0;
 
 int SALA_INICIO[10][2];
 int SALA_FIM[10][2];
 int SALA_CONTADOR = 0;
+int contadola = 0;
 
 void printret(int startrow,int startcol,int height,int width,int maxx)
 {
@@ -38,8 +40,15 @@ void printret(int startrow,int startcol,int height,int width,int maxx)
   {
    move(r,c);
    printw("#");
-   SALA_INICIO[SALA_CONTADOR][0] = r;
-   SALA_INICIO[SALA_CONTADOR][1] = c;
+   
+   if (contadola==0)
+   {
+    SALA_INICIO[SALA_CONTADOR][0] = startrow;
+    SALA_INICIO[SALA_CONTADOR][1] = startcol;
+    contadola++;
+   }
+   SALA_FIM[SALA_CONTADOR][0] = r;
+   SALA_FIM[SALA_CONTADOR][1] = c;
    SALA_CONTADOR++;
   }
  }
@@ -69,8 +78,8 @@ void GERARSALAS(int quantas,int maxy,int maxx,int posiy,int posix)
 	{
 	    RANDOM_W = 0;
 	    RANDOM_H = 0;
-	    
-	    unsigned long semente = mix(clock(), time(NULL), getpid());
+	    unsigned long cusd = 4654;
+	    unsigned long semente = mix(clock(), time(NULL), cusd);
 	    
 	   // srand (time(NULL));
 	    srand (clock()); 
@@ -235,10 +244,15 @@ void GERAR_ITEM(int *MEM_XY,int leitura,char ITEM,int N_PISOS)
         }
 }
 
+/*void MOVIMENTOINI(int qual)
+{
+    puxa(qual,SALA_INICIO[qual][0],SALA_INICIO[qual][1],SALA_INICIO[qual][0], SALA_INICIO[qual][1]);
+}
+*/
 
 void GERAR_MAPA(int maxy,int maxx,int posiy,int posix,int* MEM_XY)
 {
-	int RANDOM_Q = 0;
+	
 	srand (clock());
 	while(RANDOM_Q < 30||RANDOM_Q > 40)
 	    {
@@ -252,8 +266,29 @@ void GERAR_MAPA(int maxy,int maxx,int posiy,int posix,int* MEM_XY)
 	
 	//GERAR_CORREDORES(MEM_XY);
 }
-
-
-
-
+int retornar_randomq()
+{
+    int retorno = RANDOM_Q;
+    return (retorno);
+}
+int copia_inicio_y(int qual)
+{
+    int retorno =  SALA_INICIO[qual][0];
+    return (retorno);
+}
+int copia_inicio_x(int qual)
+{
+    int retorno =  SALA_INICIO[qual][1];
+    return (retorno);
+}
+int copia_fim_y(int qual)
+{
+    int retorno =  SALA_FIM[qual][0];
+    return (retorno);
+}
+int copia_fim_x(int qual)
+{
+    int retorno =  SALA_FIM[qual][1];
+    return (retorno);
+}
 

@@ -16,7 +16,6 @@ int posix = 0,posiy = 0;
 int tecla;
 int *MEM_XY;
 int *MEM_POSI;
-int *MEMORIAFODA;
 char leitura;
 char SOLO_SALVO = '_';
 char ITEM[5] = {'0','0','0','0','0'};
@@ -268,7 +267,7 @@ void Teclado()
 
 int main()
 {
-    int RES_Y,RES_X;
+    int RES_Y,RES_X,RANDOM_Q,ARMAZEM_INICIOY[60],ARMAZEM_INICIOX[60],ARMAZEM_FIMY[60],ARMAZEM_FIMX[60];
     leitura = inch();
     MEM_XY = (int *) malloc(2 * sizeof(int));
     MEM_POSI = (int *) malloc(2 * sizeof(int));
@@ -282,10 +281,14 @@ int main()
     resizeterm(MEM_XY[0], MEM_XY[1]);
     
     //PRINTA A GRAMA
+    
     //GERAR_GRAMA(MEM_XY);
     
     // RODA O SCRIPT DE GERAR O MAPA
     GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY);
+    RANDOM_Q = retornar_randomq();
+    
+    
     int N_PISOS = CONTAR_CHAO(MEM_XY);
     GERAR_ITEM(MEM_XY,leitura,'/',N_PISOS);
     GERAR_ITEM(MEM_XY,leitura,'T',N_PISOS);
@@ -297,12 +300,34 @@ int main()
     {
         random = rand()%15;
     }
-
+    
+    //-----------------------------------
+    //gabiarra p pegar info do outro arquivo
+    //--------------------------------------
+    
+    for (int i = 0; i < RANDOM_Q; i++)
+    {
+          ARMAZEM_INICIOY[i] = copia_inicio_y(i);
+    }
+    for (int i = 0; i < RANDOM_Q; i++)
+    {
+          ARMAZEM_INICIOX[i] = copia_inicio_x(i);
+    }
+    for (int i = 0; i < RANDOM_Q; i++)
+    {
+          ARMAZEM_FIMY[i] = copia_fim_y(i);
+    }
+    for (int i = 0; i < RANDOM_Q; i++)
+    {
+          ARMAZEM_FIMX[i] = copia_fim_x(i);
+    }
     
     for (int i = 0; i < random; i++)
     {
           GERAR_INIMIGO(MEM_XY, leitura);
     }
+    
+    //------------------------
    // GERAR_INIMIGO(MEM_XY, leitura);
    // GERAR_INIMIGO(MEM_XY, leitura);
    
@@ -344,15 +369,16 @@ int main()
         move(posiy, posix);
         DEFINIR_PERSONAGEM(posiy,posix);
         
-        
-        for (int i = 0; i < 15; i++)
+        for (int q = 0; q <RANDOM_Q; q ++)
         {
-            INIMIGO_MOVE(i);
+            
+        
+            for (int i = 0; i < 15; i++)
+            {
+                NAMESMASALA(i, ARMAZEM_INICIOY[q], ARMAZEM_INICIOX[i], ARMAZEM_FIMY[i],ARMAZEM_FIMX[i]);
+            }
         }
-        
-        
-        
-        
+
 
         
         
