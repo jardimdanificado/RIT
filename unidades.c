@@ -130,24 +130,20 @@ int INIMIGO_MOVE(int quem) {
   }
   if(SCAN_INIMIGO[1] == '@'||SCAN_INIMIGO[2] == '@'||SCAN_INIMIGO[3] == '@'||SCAN_INIMIGO[4] == '@')
   {
-    if(SCAN_INIMIGO[1] == '?')
+    if(SCAN_INIMIGO[1] == '@')
     {
-        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]-1);
         return (0);
     }
-    if(SCAN_INIMIGO[2] == '?')
+    if(SCAN_INIMIGO[2] == '@')
     {
-        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]-1, INIMIGOS[quem][1]);
         return (0);
     }
-    if(SCAN_INIMIGO[3] == '?')
+    if(SCAN_INIMIGO[3] == '@')
     {
-        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]+1);
         return (0);
     }
-    if(SCAN_INIMIGO[4] == '?')
+    if(SCAN_INIMIGO[4] == '@')
     {
-        ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]+1, INIMIGOS[quem][1]);
         return (0);
     }
     

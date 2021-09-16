@@ -4,27 +4,31 @@
 #include <stdlib.h>
 #include <string.h>
 
+// mixador pra criar seed, da net
+unsigned long mix(unsigned long a, unsigned long b, unsigned long c)
+{
+    a=a-b;  a=a-c;  a=a^(c >> 13);
+    b=b-c;  b=b-a;  b=b^(a << 8);
+    c=c-a;  c=c-b;  c=c^(b >> 13);
+    a=a-b;  a=a-c;  a=a^(c >> 12);
+    b=b-c;  b=b-a;  b=b^(a << 16);
+    c=c-a;  c=c-b;  c=c^(b >> 5);
+    a=a-b;  a=a-c;  a=a^(c >> 3);
+    b=b-c;  b=b-a;  b=b^(a << 10);
+    c=c-a;  c=c-b;  c=c^(b >> 15);
+    return c;
+}
 
 //FALANDO EM RANDOM KKKKKKK 
 //num = (rand() % (upper - lower + 1)) + lower
 //CODIGO DA NET, GERA NUMERO ALEATORIO ENTRE LOWER E UPPER
 
 
-int RANDOM_X,RANDOM_H, RANDOM_W, RANDOM_Y;
+int RANDOM_X=0,RANDOM_H, RANDOM_W, RANDOM_Y =0;
 
-int var_y = 0, var_x = 0;
-
-void corredor(int startrow,int startcol,int height,int width,int maxx)
-{
- for(int r=startrow;r<=startrow+height;r++)
- {
-  for(int c=startcol;c<=startcol+width;c++)
-  {
-   move(r,c);
-   printw(" ");
-  }
- }
-}
+int SALA_INICIO[10][2];
+int SALA_FIM[10][2];
+int SALA_CONTADOR = 0;
 
 void printret(int startrow,int startcol,int height,int width,int maxx)
 {
@@ -34,9 +38,14 @@ void printret(int startrow,int startcol,int height,int width,int maxx)
   {
    move(r,c);
    printw("#");
+   SALA_INICIO[SALA_CONTADOR][0] = r;
+   SALA_INICIO[SALA_CONTADOR][1] = c;
+   SALA_CONTADOR++;
   }
  }
 }
+
+
 
 void printretfuro(int startrow,int startcol,int height,int width,int maxx)
 {
@@ -51,38 +60,65 @@ void printretfuro(int startrow,int startcol,int height,int width,int maxx)
 }
 
 
-void GERARSALAS(int quantas,int maxy,int maxx,int posiy,int posix,int *MEM_POSI)
+void GERARSALAS(int quantas,int maxy,int maxx,int posiy,int posix)
 {
-	int apenas1 = 0;
+    int MAIOR_ALTURA = 0;
+    //RANDOM_Y = rand() % 60;
+    //int bolean_umavez = 0;
 	for (int i = 0; i < quantas; i ++ )
 	{
 	    RANDOM_W = 0;
 	    RANDOM_H = 0;
+	    
+	    unsigned long semente = mix(clock(), time(NULL), getpid());
+	    
 	   // srand (time(NULL));
 	    srand (clock()); 
-	    RANDOM_X = 1+(var_x-1);
-	    while(RANDOM_Y < 1 )
-	    {
-	    RANDOM_Y = (rand() % (maxy/2));
-	    }
-	    srand ((clock())*2);
+
 	    
-	    while(RANDOM_H < 3||RANDOM_W < 3)
+	    while(RANDOM_H < 4||RANDOM_H> 8)
 	    {
-	       RANDOM_W = rand() % 16;
-	       RANDOM_H = rand() % 14;
+	       RANDOM_H = rand() % 8;
 	    }
-	    var_x = RANDOM_X+ RANDOM_W;
+	    
+	    srand (semente);
+	    
+	    
+	    while(RANDOM_W < 8||RANDOM_W>10)
+	    {
+	       RANDOM_W = rand() % 14;
+	    }
+	    
+	    
+	    if((RANDOM_X+ RANDOM_W)+10 > maxx)
+	    {
+	        RANDOM_X = 0;
+	        RANDOM_Y = (RANDOM_Y-1) + MAIOR_ALTURA;
+	        MAIOR_ALTURA = 0;
+	    }
+	    else //if(RANDOM_X != 0&& bolean_umavez != 0)
+	    {
+	      RANDOM_X = RANDOM_X + RANDOM_H;
+	    }
+	    
+	     if((RANDOM_Y+ MAIOR_ALTURA) > maxy)
+	    {
+            i = quantas+2;
+	    }
+	    
+
+	    
+       // bolean_umavez++;
+	    
+
+	    
+	    if(RANDOM_H > MAIOR_ALTURA)
+	    {
+	        MAIOR_ALTURA = RANDOM_H;
+	    }
 	    
 	    printret(RANDOM_Y, RANDOM_X,RANDOM_H,RANDOM_W,maxx);
 	    printretfuro(RANDOM_Y+1, RANDOM_X+1,RANDOM_H-2,RANDOM_W-2,maxx);
-	    if (apenas1==0)
-	    {
-	    	MEM_POSI[0] = RANDOM_Y+1;
-	    	MEM_POSI[1] = RANDOM_X+1;
-	    	apenas1++;
-	    }
-	   // RANDOM_X = RANDOM_X + 1;
 	}
 }
 
@@ -91,11 +127,15 @@ void GERAR_PORTAS(int * MEM_XY)
 	char l1,l2,l3;
 	
 	int CONT = 0;
-    for(int y = 0;y<MEM_XY[0];y=y+2)
+    for(int x = 0;x<MEM_XY[1];x=x+1)
     {
-        	for(int x = 0;x<MEM_XY[1];x++)
+        int contaP = 0;        
+        for(int y = 0;y<MEM_XY[0];y++)
        	{
-
+            if(contaP == 0)
+            {
+                
+            
             mvinch(y,x);
             inch();
             l2 = inch();
@@ -112,32 +152,63 @@ void GERAR_PORTAS(int * MEM_XY)
             {
             		if(CONT%3 == 0)
             		{
-            			move(y+1,x);
+            			move(y+(rand()%1),x);
             			printw("?");
             		}
-            		else 
-            		{
-            			if(CONT%2 == 0)
-            			{
-            				move(y+(rand()%2),x);
-            				printw("?");
-            			}
-            			else
-            			{
-            				move(y+(rand()%4),x);
-            				printw("?");
-            			
-            			}
             		}         	
           
-            CONT++;
+                CONT++;
     
            	}
+           	
   		}
-   	}	    
+  	  }	    
 }
 
-void GERAR_ARMA(int *MEM_XY,int leitura)
+void GERAR_PORTAS_VERTICAL(int * MEM_XY)
+{
+	char l1,l2,l3;
+	
+	int CONT = 0;
+    for(int y = 0;y<MEM_XY[0];y++)
+    {
+        int contaP = 0;        
+        for(int x = 0;x<MEM_XY[1];x=x+1)
+       	{
+            if(contaP == 0)
+            {
+                
+            
+            mvinch(y,x);
+            inch();
+            l2 = inch();
+            
+            mvinch(y-1,x);
+            inch();
+            l1 = inch();
+            
+            mvinch(y+1,x);
+            inch();
+            l3 = inch();
+            
+            if(l1 == '_' && l2 == '#' && l3 == '_')
+            {
+            		if(CONT%6 == 0)
+            		{
+            			move(y,x);
+            			printw("?");
+            		}
+            		}         	
+          
+                CONT++;
+    
+           	}
+           	
+  		}
+  	  }	    
+}
+
+void GERAR_ARMA(int *MEM_XY,int leitura,char ITEM)
 {
 
         int roleta = (rand() % (15- 8+ 1)) + 8;
@@ -155,7 +226,7 @@ void GERAR_ARMA(int *MEM_XY,int leitura)
 		cronometro++;
 		if(cronometro == roleta)
 		{
-			mvaddch(y,x,'/');
+			mvaddch(y,x,ITEM);
 			y = MEM_XY[0]+1;
 			x = MEM_XY[1]+1;
 		}
@@ -165,34 +236,21 @@ void GERAR_ARMA(int *MEM_XY,int leitura)
 }
 
 
-void GERAR_MAPA(int maxy,int maxx,int posiy,int posix,int* MEM_XY,int *MEM_POSI)
+void GERAR_MAPA(int maxy,int maxx,int posiy,int posix,int* MEM_XY)
 {
 	int RANDOM_Q = 0;
 	srand (clock());
-	while(RANDOM_Q < 3||RANDOM_Q > 7)
+	while(RANDOM_Q < 30||RANDOM_Q > 40)
 	    {
-	   	srand (clock());
-	        RANDOM_Q = rand()%10;
+	   	    srand (clock());
+	        RANDOM_Q = rand()%40;
 	    }
 	
-	GERARSALAS(RANDOM_Q,maxy,maxx,posiy,posix,MEM_POSI);
+	GERARSALAS(RANDOM_Q,maxy,maxx,posiy,posix);
+	GERAR_PORTAS_VERTICAL(MEM_XY);
 	GERAR_PORTAS(MEM_XY);
 	
-	// RETORNA UMA POSIÇÃO ALEATORIA DENTRO DAS SALAS
-	/*int ROLETA;
-	
-	srand (clock());
-	ROLETA = (rand() % (7- 3+ 1)) + 3;
-	
-	int lowery = POSI_FURO_INICIAL[(2*ROLETA)];
-	int uppery = POSI_FURO_FINAL[(2*ROLETA)+1];
-	
-	int lowerx = POSI_FURO_INICIAL[(2*ROLETA)];
-	int upperx = POSI_FURO_FINAL[(2*ROLETA)+1];
-	int posicaox,posicaoy;
-	posicaoy = (rand() % (uppery - lowery + 1)) + lowery;
-	posicaox = (rand() % (upperx - lowerx + 1)) + lowerx;*/
-	
+	//GERAR_CORREDORES(MEM_XY);
 }
 
 

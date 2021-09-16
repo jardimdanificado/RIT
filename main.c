@@ -19,10 +19,9 @@ int *MEM_POSI;
 int *MEMORIAFODA;
 char leitura;
 char SOLO_SALVO = '_';
-int PORTAS[10][3];
-char ITEM[5];
-int ITEM_CONTADOR = 0;
-int ITEM_ATUAL = 0;
+char ITEM[5] = {'0','0','0','0','0'};
+//int ITEM_CONTADOR = 0;
+//int ITEM_ATUAL = 0;
 
 void Teclado()
 {
@@ -144,15 +143,21 @@ void Teclado()
                 {
                 	mvinch(posiy+1,posix);
                 	leitura = inch();
+                	
+                	
                 	if(leitura == 'W')
                     	{
                     	    ATACAR(posiy+1,posix);
                     	    MORTE_INIMIGO(posiy+1,posix,SOLO_SALVO);
                     	}
+                    	
+                    	
                 	if (leitura == '?')
                 	{
                 		ABRIR_PORTA(posiy,posix,tecla);
                 	}
+                	
+                	
                     if (posiy < MEM_XY[0]-1&& leitura != '#'&&leitura != '?'&&leitura != 'W')
                     {
                     	mvaddch (posiy,posix,SOLO_SALVO);
@@ -174,14 +179,54 @@ void Teclado()
                   if(ITEM[0]!='0')
                   {
                     ITEM[0] = DROPAR_ITEM(posiy,posix,ITEM[0]);
-                    if(ITEM[0] == '0')
+                    /*if(ITEM[0] == '0')
                     {
                         ITEM_CONTADOR--;
-                    }
+                    }*/
                   }
-                  else
+                }
+                case '2':
+                {
+                  if(ITEM[1]!='0')
                   {
-                    
+                    ITEM[1] = DROPAR_ITEM(posiy,posix,ITEM[1]);
+                  /*  if(ITEM[1] == '0')
+                    {
+                        ITEM_CONTADOR--;
+                    }*/
+                  }
+                }
+                case '3':
+                {
+                  if(ITEM[2]!='0')
+                  {
+                    ITEM[2] = DROPAR_ITEM(posiy,posix,ITEM[2]);
+                    /*if(ITEM[2] == '0')
+                    {
+                        ITEM_CONTADOR--;
+                    }*/
+                  }
+                }
+                case '4':
+                {
+                  if(ITEM[3]!='0')
+                  {
+                    ITEM[3] = DROPAR_ITEM(posiy,posix,ITEM[3]);
+                   /* if(ITEM[3] == '0')
+                    {
+                        ITEM_CONTADOR--;
+                    }*/
+                  }
+                }
+                case '5':
+                {
+                  if(ITEM[4]!='0')
+                  {
+                    ITEM[4] = DROPAR_ITEM(posiy,posix,ITEM[4]);
+                    /*if(ITEM[4] == '0')
+                    {
+                        ITEM_CONTADOR--;
+                    }*/
                   }
                 }
 
@@ -204,8 +249,15 @@ void Teclado()
                 
                  case 'g':
                 {
-                   ITEM[ITEM_CONTADOR] = PEGAR_ITEM(posiy,posix,tecla);
-                   ITEM_CONTADOR++;
+                   for (int i = 0; i < 5; i ++)
+                   {
+                       if(ITEM[i] == '0')
+                       {
+                         ITEM[i] = PEGAR_ITEM(posiy,posix,tecla);
+                         i = 6;
+                       }
+                   }
+                   
                 }
                 break;
         }
@@ -229,12 +281,13 @@ int main()
     getmaxyx(stdscr,MEM_XY[0], MEM_XY[1]);
     resizeterm(MEM_XY[0], MEM_XY[1]);
     
-  //PRINTA A GRAMA
+    //PRINTA A GRAMA
     //GERAR_GRAMA(MEM_XY);
     
     // RODA O SCRIPT DE GERAR O MAPA
-    GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY,MEM_POSI);
-    GERAR_ARMA(MEM_XY,leitura);
+    GERAR_MAPA(MEM_XY[0],MEM_XY[1],posiy,posix,MEM_XY);
+    GERAR_ARMA(MEM_XY,leitura,'/');
+    GERAR_ARMA(MEM_XY,leitura,'T');
     srand((clock()));
     
     int random = 0;
@@ -246,7 +299,7 @@ int main()
     
     for (int i = 0; i < random; i++)
     {
-            GERAR_INIMIGO(MEM_XY, leitura);
+          GERAR_INIMIGO(MEM_XY, leitura);
     }
    // GERAR_INIMIGO(MEM_XY, leitura);
    // GERAR_INIMIGO(MEM_XY, leitura);
@@ -312,8 +365,8 @@ int main()
         else
         {
        		RES_Y= MEM_XY[0];
-   		RES_X= MEM_XY[1];
-                Teclado();
+   		    RES_X= MEM_XY[1];
+            Teclado();
         }
         MEM_POSI[0] = posix;
         MEM_POSI[1] = posiy;

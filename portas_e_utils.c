@@ -12,8 +12,8 @@
 //PORTA_ESTADO[num_porta] varia entre F(echado) e A(berto)
 //
 
-int PORTA_XY[10][2];
-char PORTA_ESTADO[10];
+int PORTA_XY[50][2];
+char PORTA_ESTADO[50];
 
 void DEFINIR_PORTA(int y,int x, int num_porta)
 {
@@ -53,7 +53,7 @@ int ABRIR_PORTA(int y, int x,int tecla)
 		break;
 	}
 	
-	for (int i = 0; i < 10; i ++)
+	for (int i = 0; i < 50; i ++)
 	{
 			if(PORTA_XY[i][0] == y && PORTA_XY[i][1] == x)
 			{
@@ -76,7 +76,7 @@ int ABRIR_PORTA(int y, int x,int tecla)
 int ABRIR_PORTA_INIMIGO(int y, int x)
 {
 	
-	for (int i = 0; i < 10; i ++)
+	for (int i = 0; i < 5; i ++)
 	{
 			if(PORTA_XY[i][0] == y && PORTA_XY[i][1] == x)
 			{
