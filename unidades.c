@@ -272,7 +272,7 @@ int INIMIGO_MOVE(int quem) {
   inch();
   SCAN_INIMIGO[4] = inch();
   
-  if(SCAN_INIMIGO[1] == '?'||SCAN_INIMIGO[2] == '?'||SCAN_INIMIGO[3] == '?'||SCAN_INIMIGO[4] == '?')
+ /* if(SCAN_INIMIGO[1] == '?'||SCAN_INIMIGO[2] == '?'||SCAN_INIMIGO[3] == '?'||SCAN_INIMIGO[4] == '?')
   {
     if(SCAN_INIMIGO[1] == '?')
     {
@@ -295,7 +295,7 @@ int INIMIGO_MOVE(int quem) {
         return (0);
     }
     
-  }
+  }*/
   if(SCAN_INIMIGO[1] == '@'||SCAN_INIMIGO[2] == '@'||SCAN_INIMIGO[3] == '@'||SCAN_INIMIGO[4] == '@')
   {
     if(SCAN_INIMIGO[1] == '@')
@@ -678,37 +678,25 @@ int INIMIGO_MOVE_PORTA(int quem) {
     if(SCAN_INIMIGO[1] == '?')
     {
         ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]-1);
-        mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]-1, 'W');
-        mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
-        INIMIGOS[quem][1] = INIMIGOS[quem][1] - 1;
-        SOLO_S_INIMIGO[quem] = SCAN_INIMIGO[1];
+
         return (0);
     }
     if(SCAN_INIMIGO[2] == '?')
     {
         ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]-1, INIMIGOS[quem][1]);
-        mvaddch(INIMIGOS[quem][0]-1, INIMIGOS[quem][1], 'W');
-        mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
-        INIMIGOS[quem][0] = INIMIGOS[quem][0] - 1;
-        SOLO_S_INIMIGO[quem] = SCAN_INIMIGO[2];
+
         return (0);
     }
     if(SCAN_INIMIGO[3] == '?')
     {
         ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0], INIMIGOS[quem][1]+1);
-        mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1]+1, 'W');
-        mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
-        INIMIGOS[quem][1] = INIMIGOS[quem][1] + 1;
-        SOLO_S_INIMIGO[quem] = SCAN_INIMIGO[3];
+
         return (0);
     }
     if(SCAN_INIMIGO[4] == '?')
     {
         ABRIR_PORTA_INIMIGO(INIMIGOS[quem][0]+1, INIMIGOS[quem][1]);
-        mvaddch(INIMIGOS[quem][0]+1, INIMIGOS[quem][1], 'W');
-        mvaddch(INIMIGOS[quem][0], INIMIGOS[quem][1], SOLO_S_INIMIGO[quem]);
-        INIMIGOS[quem][0] = INIMIGOS[quem][0]+1;
-        SOLO_S_INIMIGO[quem] = SCAN_INIMIGO[4];
+
         return (0);
       }
     
@@ -1041,7 +1029,7 @@ int INIMIGO_MOVE_PORTA(int quem) {
   
 int NAMESMASALA(int quem,int ARMAZEM_INICIOY,int ARMAZEM_INICIOX,int ARMAZEM_FIMY,int ARMAZEM_FIMX)
 {
-   if(PERSONAGEM[0]>=ARMAZEM_INICIOY&&PERSONAGEM[1]>=ARMAZEM_INICIOX&&PERSONAGEM[0]<=ARMAZEM_FIMY&&PERSONAGEM[1]<=ARMAZEM_FIMX)   
+   if(PERSONAGEM[0]>ARMAZEM_INICIOY && PERSONAGEM[1]>ARMAZEM_INICIOX && PERSONAGEM[0]<ARMAZEM_FIMY && PERSONAGEM[1]<ARMAZEM_FIMX)   
    {
         INIMIGO_MOVE(quem);
    }
