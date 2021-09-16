@@ -27,8 +27,8 @@ unsigned long mix(unsigned long a, unsigned long b, unsigned long c)
 int RANDOM_X=0,RANDOM_H, RANDOM_W, RANDOM_Y =0;
 int RANDOM_Q = 0;
 
-int SALA_INICIO[10][2];
-int SALA_FIM[10][2];
+int SALA_INICIO[40][2];
+int SALA_FIM[40][2];
 int SALA_CONTADOR = 0;
 int contadola = 0;
 
