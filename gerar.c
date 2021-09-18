@@ -274,24 +274,5 @@ int retornar_randomq()
     int retorno = RANDOM_Q;
     return (retorno);
 }
-int copia_inicio_y(int qual)
-{
-    int retorno =  SALA_INICIO[qual][0];
-    return (retorno);
-}
-int copia_inicio_x(int qual)
-{
-    int retorno =  SALA_INICIO[qual][1];
-    return (retorno);
-}
-int copia_fim_y(int qual)
-{
-    int retorno =  SALA_FIM[qual][0];
-    return (retorno);
-}
-int copia_fim_x(int qual)
-{
-    int retorno =  SALA_FIM[qual][1];
-    return (retorno);
-}
+
 

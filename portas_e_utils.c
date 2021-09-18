@@ -36,6 +36,12 @@ int get_portax(int i)
     return(retorno);
 }
 
+int get_estado(int i)
+{
+    int retorno = PORTA_ESTADO[i];
+    return(retorno);
+}
+
 //ESSA FUNÇÃO RETORNA SE A PORTA ESTA FECHADA OU ABERTA, E SE TIVER ABERTA ABRE.
 // O=FECHADA 1=ABERTA
 int ABRIR_PORTA(int y, int x,int tecla)

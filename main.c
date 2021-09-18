@@ -267,7 +267,7 @@ void Teclado()
 
 int main()
 {
-    int RES_Y,RES_X,RANDOM_Q,ARMAZEM_INICIOY[60],ARMAZEM_INICIOX[60],ARMAZEM_FIMY[60],ARMAZEM_FIMX[60];
+    int RES_Y,RES_X,RANDOM_Q;
     leitura = inch();
     MEM_XY = (int *) malloc(2 * sizeof(int));
     MEM_POSI = (int *) malloc(2 * sizeof(int));
@@ -279,7 +279,8 @@ int main()
     curs_set(0);
     getmaxyx(stdscr,MEM_XY[0], MEM_XY[1]);
     resizeterm(MEM_XY[0], MEM_XY[1]);
-    
+    RES_X = MEM_XY[1];
+    RES_Y = MEM_XY[0];
     //PRINTA A GRAMA
     
     //GERAR_GRAMA(MEM_XY);
@@ -307,22 +308,6 @@ int main()
     //gabiarra p pegar info do outro arquivo
     //--------------------------------------
     
-    for (int i = 0; i < RANDOM_Q; i++)
-    {
-          ARMAZEM_INICIOY[i] = copia_inicio_y(i);
-    }
-    for (int i = 0; i < RANDOM_Q; i++)
-    {
-          ARMAZEM_INICIOX[i] = copia_inicio_x(i);
-    }
-    for (int i = 0; i < RANDOM_Q; i++)
-    {
-          ARMAZEM_FIMY[i] = copia_fim_y(i);
-    }
-    for (int i = 0; i < RANDOM_Q; i++)
-    {
-          ARMAZEM_FIMX[i] = copia_fim_x(i);
-    }
     
     for (int i = 0; i < random; i++)
     {
@@ -371,9 +356,16 @@ int main()
         {
             portasx[i] = get_portax(i);
         }
+        int estados[50];
+         for (int i = 0; i < 50; i ++)
+        {
+            estados[i] = get_estado(i);
+        }
         
-        PLEASE_PORTAS(portasy,portasx);
-        PLEASE_SALAS(ARMAZEM_INICIOY,ARMAZEM_INICIOX,ARMAZEM_FIMY,ARMAZEM_FIMX);
+        
+        
+        
+        PLEASE_PORTAS(portasy,portasx,estados);
         
 	// LOOP DO TECLADO/jogo
 
@@ -383,14 +375,11 @@ int main()
         move(posiy, posix);
         DEFINIR_PERSONAGEM(posiy,posix);
         
-        for (int q = 0; q <RANDOM_Q; q ++)
-        {
-            
         
-            for (int i = 0; i < 15; i++)
-            {
-                NAMESMASALA(i, ARMAZEM_INICIOY[q], ARMAZEM_INICIOX[q], ARMAZEM_FIMY[q],ARMAZEM_FIMX[q]);
-            }
+        for (int i = 0; i < 15; i++)
+        {
+           //simples(i);
+           DECISAO(i);
         }
         
         
@@ -405,8 +394,6 @@ int main()
          
         else
         {
-       		RES_Y= MEM_XY[0];
-   		    RES_X= MEM_XY[1];
             Teclado();
         }
         MEM_POSI[0] = posix;
