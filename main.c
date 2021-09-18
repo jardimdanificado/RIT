@@ -147,7 +147,7 @@ void Teclado()
                 	if(leitura == 'W')
                     	{
                     	    ATACAR(posiy+1,posix);
-                    	    MORTE_INIMIGO(posiy+1,posix,SOLO_SALVO);
+                    	    MORTE_INIMIGO();
                     	}
                     	
                     	
