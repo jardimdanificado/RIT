@@ -90,7 +90,7 @@ void Teclado()
                     if(leitura == 'W')
                    	{
                     	ATACAR(posiy-1,posix);
-                    	MORTE_INIMIGO(posiy-1,posix,SOLO_SALVO);
+                    	MORTE_INIMIGO();
                     }
                     move(posiy,posix);
                     refresh();
@@ -104,7 +104,7 @@ void Teclado()
                 	if(leitura == 'W')
                     {
                     	    ATACAR(posiy,posix-1);
-                    	     MORTE_INIMIGO(posiy,posix-1,SOLO_SALVO);
+                    	     MORTE_INIMIGO();
                    	}
                 	if (leitura == '?')
                 	{
