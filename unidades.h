@@ -46,13 +46,6 @@ int moveright(int qual)
 //geração
 void gerar_personagem(int *yxmax)
 {
-    for(int q = 0; q<20;q++)
-    {
-        for(int i = 0;i < 2;i++)
-        {
-            posi[q][i] = 0;
-        }
-    }
     char teste;
     for (int y = 0; y < yxmax[0]; y ++)
     {
@@ -101,13 +94,15 @@ void gerar_inimigo(int *yxmax)
                 
                 contador++;
                 
-                if(contador == a&&qualunidade<2)
+                if(contador == a&&qualunidade>=1&&qualunidade<=9)
                 {
-                    posi[qualunidade][0]=y;
-                    posi[qualunidade][1]=x;
+                    
                     mvaddch(y,x,'W');
+                    posi[qualunidade][0]= y;
+                    posi[qualunidade][1]= x;
                     qualunidade++;
                     contador=0;
+                    
                 }
             }
             
