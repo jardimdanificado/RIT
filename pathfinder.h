@@ -57,11 +57,12 @@ int gerarpath(int qual)
 {
     scanear(unidadey(qual),unidadex(qual));
     char perto = arredores(qual);
-  if(perto == 'S')
+  if(perto == 'S'||scan[0]=='0'||scan[1]=='0'||scan[2]=='0'||scan[3]=='0')
   {
     if(scan[0]=='?'||scan[1]=='?'||scan[2]=='?'||scan[3]=='?')
     {
                 abrir_cs(unidadey(qual),unidadex(qual));
+                mvaddch(unidadey(qual),unidadex(qual),'W');
                 return(0);
     }
     
@@ -75,7 +76,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -86,7 +88,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -96,7 +99,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     
                 }
                 else
@@ -107,7 +111,8 @@ int gerarpath(int qual)
                     
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                         
                     }
                 }
@@ -124,7 +129,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -134,7 +140,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -144,7 +151,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -153,7 +161,8 @@ int gerarpath(int qual)
         
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);;
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);;
                     }
                 }
             }
@@ -167,7 +176,8 @@ int gerarpath(int qual)
                 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);;
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);;
         }
         else
         {
@@ -177,7 +187,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -187,7 +198,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -197,7 +209,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -211,7 +224,8 @@ int gerarpath(int qual)
 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);;
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);;
         }
         else
         {
@@ -221,7 +235,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -231,7 +246,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -241,7 +257,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -255,7 +272,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -266,7 +284,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -277,7 +296,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -286,7 +306,8 @@ int gerarpath(int qual)
 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -300,7 +321,8 @@ int gerarpath(int qual)
 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -310,7 +332,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -320,7 +343,8 @@ int gerarpath(int qual)
                         mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                         solo_s[qual] = scan[0];
                         moveleft(qual);
-                        return(0);
+                        mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -330,7 +354,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -345,7 +370,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -355,7 +381,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -365,7 +392,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -374,7 +402,8 @@ int gerarpath(int qual)
                  
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -389,7 +418,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -398,7 +428,8 @@ int gerarpath(int qual)
                  
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -408,7 +439,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -418,7 +450,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -448,6 +481,7 @@ int gerarpath(int qual)
                     portaperto[i][0]=0;
                     portaperto[i][0]=0;
                 }
+                mvaddch(unidadey(qual),unidadex(qual),'W');
                 return(0);
     }
     //portasd(qual);
@@ -476,7 +510,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -487,7 +522,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -497,7 +533,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     
                 }
                 else
@@ -508,7 +545,8 @@ int gerarpath(int qual)
                     
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                         
                     }
                 }
@@ -525,7 +563,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -535,7 +574,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -545,7 +585,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -554,7 +595,8 @@ int gerarpath(int qual)
         
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);;
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);;
                     }
                 }
             }
@@ -568,7 +610,8 @@ int gerarpath(int qual)
                 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);;
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);;
         }
         else
         {
@@ -578,7 +621,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -588,7 +632,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -598,7 +643,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -612,7 +658,8 @@ int gerarpath(int qual)
 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);;
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);;
         }
         else
         {
@@ -622,7 +669,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -632,7 +680,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -642,7 +691,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -656,7 +706,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -667,7 +718,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -678,7 +730,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -687,7 +740,8 @@ int gerarpath(int qual)
 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -701,7 +755,8 @@ int gerarpath(int qual)
 
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -711,7 +766,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -721,7 +777,8 @@ int gerarpath(int qual)
                         mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                         solo_s[qual] = scan[0];
                         moveleft(qual);
-                        return(0);
+                        mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -731,7 +788,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -746,7 +804,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -756,7 +815,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -766,7 +826,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -775,7 +836,8 @@ int gerarpath(int qual)
                  
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }
@@ -790,7 +852,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[2];
                     moveright(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
         }
         else
         {
@@ -799,7 +862,8 @@ int gerarpath(int qual)
                  
                  solo_s[qual] = scan[1];
                  moveup(qual);
-                 return(0);
+                 mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
             }
             else
             {
@@ -809,7 +873,8 @@ int gerarpath(int qual)
                     mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
                     solo_s[qual] = scan[3];
                     movedown(qual);
-                    return(0);
+                    mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                 }
                 else
                 {
@@ -819,7 +884,8 @@ int gerarpath(int qual)
             mvaddch(unidadey(qual),unidadex(qual),solo_s[qual]);
             solo_s[qual] = scan[0];
             moveleft(qual);
-            return(0);
+            mvaddch(unidadey(qual),unidadex(qual),'W');
+                return(0);
                     }
                 }
             }

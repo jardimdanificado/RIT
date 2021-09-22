@@ -75,8 +75,11 @@ void gerar_inimigo(int *yxmax)
     int contador = 0;
     char teste;
     srand(mix(clock(), time(NULL), cusd));
-    int a = rand()%40;
-    
+    int a = 0;
+    while (a<20)
+    {
+    a = rand()%40;
+    }
     
     for (int y = 0; y < yxmax[0]; y ++)
     {
@@ -94,7 +97,7 @@ void gerar_inimigo(int *yxmax)
                 
                 contador++;
                 
-                if(contador == a&&qualunidade>=1&&qualunidade<=9)
+                if(contador == a&&qualunidade>=1)
                 {
                     
                     mvaddch(y,x,'W');
