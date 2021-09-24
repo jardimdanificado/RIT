@@ -25,7 +25,7 @@ unsigned long mix(unsigned long a, unsigned long b, unsigned long c)
     return c;
 }
 
-//FALANDO EM RANDOM KKKKKKK 
+//FALANDO EM RANDOM KKKKKKK
 //num = (rand() % (upper - lower + 1)) + lower
 //CODIGO DA NET, GERA NUMERO ALEATORIO ENTRE LOWER E UPPER
 
@@ -49,7 +49,7 @@ void printret(int startrow,int startcol,int height,int width,int maxx)
   {
    move(r,c);
    printw("#");
-   
+
    if (contadola==0)
    {
     SALA_INICIO[SALA_CONTADOR][0] = startrow;
@@ -89,25 +89,25 @@ void GERARSALAS(int quantas,int maxy,int maxx)
 	    RANDOM_H = 0;
 	    unsigned long cusd = 4654;
 	    unsigned long semente = mix(clock(), time(NULL), cusd);
-	    
-	   // srand (time(NULL));
-	    srand (clock()); 
 
-	    
+	   // srand (time(NULL));
+	    srand (clock());
+
+
 	    while(RANDOM_H < 4||RANDOM_H> 8)
 	    {
 	       RANDOM_H = rand() % 8;
 	    }
-	    
+
 	    srand (semente);
-	    
-	    
+
+
 	    while(RANDOM_W < 8||RANDOM_W>10)
 	    {
 	       RANDOM_W = rand() % 14;
 	    }
-	    
-	    
+
+
 	    if((RANDOM_X+ RANDOM_W)+10 > maxx)
 	    {
 	        RANDOM_X = 0;
@@ -118,23 +118,23 @@ void GERARSALAS(int quantas,int maxy,int maxx)
 	    {
 	      RANDOM_X = RANDOM_X + RANDOM_H;
 	    }
-	    
+
 	     if((RANDOM_Y+ MAIOR_ALTURA) > maxy)
 	    {
             i = quantas+2;
 	    }
-	    
 
-	    
+
+
        // bolean_umavez++;
-	    
 
-	    
+
+
 	    if(RANDOM_H > MAIOR_ALTURA)
 	    {
 	        MAIOR_ALTURA = RANDOM_H;
 	    }
-	    
+
 	    printret(RANDOM_Y, RANDOM_X,RANDOM_H,RANDOM_W,maxx);
 	    printretfuro(RANDOM_Y+1, RANDOM_X+1,RANDOM_H-2,RANDOM_W-2,maxx);
 	}
@@ -143,29 +143,29 @@ void GERARSALAS(int quantas,int maxy,int maxx)
 void GERAR_PORTAS(int * MEM_XY)
 {
 	char l1,l2,l3;
-	
+
 	int CONT = 0;
     for(int x = 0;x<MEM_XY[1];x=x+1)
     {
-        int contaP = 0;        
+        int contaP = 0;
         for(int y = 0;y<MEM_XY[0];y++)
        	{
             if(contaP == 0)
             {
-                
-            
+
+
             mvinch(y,x);
             inch();
             l2 = inch();
-            
+
             mvinch(y,x-1);
             inch();
             l1 = inch();
-            
+
             mvinch(y,x+1);
             inch();
             l3 = inch();
-            
+
             if(l1 == ' ' && l2 == '#' && l3 == ' ')
             {
             		if(CONT%3 == 0)
@@ -173,42 +173,42 @@ void GERAR_PORTAS(int * MEM_XY)
             			move(y+(rand()%1),x);
             			printw("?");
             		}
-            		}         	
-          
+            		}
+
                 CONT++;
-    
+
            	}
-           	
+
   		}
-  	  }	    
+  	  }
 }
 
 void GERAR_PORTAS_VERTICAL(int * MEM_XY)
 {
 	char l1,l2,l3;
-	
+
 	int CONT = 0;
     for(int y = 0;y<MEM_XY[0];y++)
     {
-        int contaP = 0;        
+        int contaP = 0;
         for(int x = 0;x<MEM_XY[1];x=x+1)
        	{
             if(contaP == 0)
             {
-                
-            
+
+
             mvinch(y,x);
             inch();
             l2 = inch();
-            
+
             mvinch(y-1,x);
             inch();
             l1 = inch();
-            
+
             mvinch(y+1,x);
             inch();
             l3 = inch();
-            
+
             if(l1 == ' ' && l2 == '#' && l3 == ' ')
             {
             		if(CONT%6 == 0)
@@ -216,14 +216,14 @@ void GERAR_PORTAS_VERTICAL(int * MEM_XY)
             			move(y,x);
             			printw("?");
             		}
-            		}         	
-          
+            		}
+
                 CONT++;
-    
+
            	}
-           	
+
   		}
-  	  }	    
+  	  }
 }
 
 void GERAR_ITEM(int *MEM_XY,int leitura,char ITEM,int N_PISOS)
@@ -231,7 +231,7 @@ void GERAR_ITEM(int *MEM_XY,int leitura,char ITEM,int N_PISOS)
 
     int roleta = (rand() % (N_PISOS - 8+ 1)) + 8;
 	int cronometro =0;
-	
+
 	for(int y = 0;y<MEM_XY[0];y++)
         {
           for(int x = 0;x<MEM_XY[1];x++)
@@ -263,11 +263,11 @@ void gerar_grama(int *yxmax)
     for (int y = 0; y < yxmax[0]; y ++)
     {
         for (int x = 0; x < yxmax[1]; x ++)
-        {   
+        {
                if(x%2==0)
                {
                move(y,x);
-               printw(",");
+               printw(".");
                }
                if(x%2!=0)
                {
@@ -281,18 +281,18 @@ void gerar_grama(int *yxmax)
 
 void GERAR_MAPA(int *yxmax)
 {
-	
+
 	srand (clock());
 	while(RANDOM_Q < 30||RANDOM_Q > 40)
 	    {
 	   	    srand (clock());
 	        RANDOM_Q = rand()%40;
 	    }
-	
+
 	GERARSALAS(RANDOM_Q,yxmax[0],yxmax[1]);
 	GERAR_PORTAS_VERTICAL(yxmax);
 	GERAR_PORTAS(yxmax);
-	
+
 	//GERAR_CORREDORES(MEM_XY);
 }
 int retornar_randomq()

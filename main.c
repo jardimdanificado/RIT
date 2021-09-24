@@ -78,7 +78,7 @@ int main()
                 i=3123;
             }*/
         }
-        refresh();   
+        refresh();
     }
     endwin();
     
